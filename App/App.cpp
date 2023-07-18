@@ -2,11 +2,14 @@
 
 #pragma comment(lib, "GameEngineBase.lib")
 #pragma comment(lib, "GameEnginePlatform.lib")
+#pragma comment(lib, "GameEngineCore.lib")
+#pragma comment(lib, "GameEngineContents.lib")
 
 #include <iostream>
 #include <Windows.h>
 #include <memory>
-#include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEngineCore/GameEngineCore.h>
+#include <GameEngineContents/ContentsCore.h>
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -14,9 +17,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	GameEngineWindow::MainWindow.Open("TestWindow", hInstance);
-	GameEngineWindow::MainWindow.SetPosAndScale({ 100, 100 }, { 1280, 720 });
-
-	GameEngineWindow::MessageLoop(hInstance, nullptr, nullptr, nullptr);
+	GameEngineCore::EngineStart<ContentsCore>(hInstance);
 }
 

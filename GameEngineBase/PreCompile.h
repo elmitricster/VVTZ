@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <string>
 #include <string_view>
+#include <functional>
 #include <memory>
 
 #include <map>
