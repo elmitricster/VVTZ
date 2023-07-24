@@ -10,10 +10,10 @@
 ULONG_PTR GameEngineWindowTexture::Token;
 Gdiplus::GdiplusStartupInput GameEngineWindowTexture::Input;
 
-class GDIPlusInit 
+class GDIPlusInit
 {
 public:
-	GDIPlusInit() 
+	GDIPlusInit()
 	{
 		Gdiplus::Status Result = Gdiplus::GdiplusStartup(&GameEngineWindowTexture::Token, &GameEngineWindowTexture::Input, nullptr);
 
@@ -22,7 +22,7 @@ public:
 			int a = 0;
 		}
 	}
-	~GDIPlusInit() 
+	~GDIPlusInit()
 	{
 		Gdiplus::GdiplusShutdown(GameEngineWindowTexture::Token);
 	}
@@ -33,11 +33,11 @@ GDIPlusInit InitInstance;
 /////////////////////// GIDPLUSInit
 
 
-GameEngineWindowTexture::GameEngineWindowTexture() 
+GameEngineWindowTexture::GameEngineWindowTexture()
 {
 }
 
-GameEngineWindowTexture::~GameEngineWindowTexture() 
+GameEngineWindowTexture::~GameEngineWindowTexture()
 {
 }
 
@@ -261,9 +261,9 @@ void GameEngineWindowTexture::PlgCopy(GameEngineWindowTexture* _CopyTexture
 	float4 LeftBot = Rect.CenterLeftBot();
 	// float4 RightBot = Rect.CenterRightBot();
 
-	ArrPoint[0] = (LeftTop.GetRotationToDegZ(_Angle) + _Pos).WindowPOINT();
-	ArrPoint[1] = (RightTop.GetRotationToDegZ(_Angle) + _Pos).WindowPOINT();
-	ArrPoint[2] = (LeftBot.GetRotationToDegZ(_Angle) + _Pos).WindowPOINT();
+	ArrPoint[0] = (LeftTop.VectorRotationToDegZ(_Angle) + _Pos).WindowPOINT();
+	ArrPoint[1] = (RightTop.VectorRotationToDegZ(_Angle) + _Pos).WindowPOINT();
+	ArrPoint[2] = (LeftBot.VectorRotationToDegZ(_Angle) + _Pos).WindowPOINT();
 
 	HDC CopyImageDC = _CopyTexture->GetImageDC();
 
