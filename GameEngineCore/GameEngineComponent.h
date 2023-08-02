@@ -1,4 +1,5 @@
 #pragma once
+#include "GameEngineObject.h"
 
 class GameEngineComponent
 {

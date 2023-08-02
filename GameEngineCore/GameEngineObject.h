@@ -1,4 +1,10 @@
 #pragma once
+#include "GameEngineTransform.h"
+
+// 우리엔진의 가장 기본적인
+// Start 이녀석이 시작될때
+// Update 이녀석이 업데이트될때
+// Release 이녀석이 지워질때
 
 class GameEngineObject
 {
@@ -20,6 +26,6 @@ public:
 protected:
 
 private:
-
+	GameEngineTransform Transform;
 };
 

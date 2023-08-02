@@ -7,6 +7,9 @@
     <Filter Include="Object">
       <UniqueIdentifier>{e02d63b4-d0d0-456d-bdb2-9fd513ed5c81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Transform">
+      <UniqueIdentifier>{d6b0daab-eb56-4af5-9e5d-8e4ba16c8350}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineCore.h" />
@@ -25,6 +28,9 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineTransform.h">
+      <Filter>Object\Transform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -42,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTransform.cpp">
+      <Filter>Object\Transform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
