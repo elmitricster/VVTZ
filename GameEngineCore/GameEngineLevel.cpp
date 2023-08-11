@@ -51,6 +51,16 @@ void GameEngineLevel::AllUpdate(float _Delta)
 	}
 }
 
+void GameEngineLevel::Render(float _Delta)
+{
+	for (std::pair<const int, std::shared_ptr<class GameEngineCamera>>& CameraPair : Cameras)
+	{
+		// 레퍼런스로 받는다.
+		std::shared_ptr<GameEngineCamera>& Camera = CameraPair.second;
+		Camera->Render(_Delta);
+	}
+}
+
 
 void GameEngineLevel::ActorRelease()
 {
@@ -60,7 +70,6 @@ void GameEngineLevel::ActorRelease()
 
 void GameEngineLevel::ActorInit(std::shared_ptr<class GameEngineActor> _Actor, int _Order)
 {
-	_Actor->SetParent(this);
+	_Actor->SetParent(this, _Order);
 	_Actor->Start();
-	Childs[_Order].push_back(_Actor);
 }

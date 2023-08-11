@@ -1,5 +1,6 @@
 #pragma once
 #include "GameEngineLevel.h"
+#include "GameEngineDevice.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 
 // Ό³Έν :
@@ -8,6 +9,10 @@ class GameEngineCore
 	friend class GameEngineLevel;
 
 public:
+	static GameEngineTime MainTime;
+	static GameEngineWindow MainWindow;
+	static GameEngineDevice MainDevcie;
+
 	// constrcuter destructer
 	GameEngineCore();
 	~GameEngineCore();
@@ -64,8 +69,6 @@ public:
 protected:
 
 private:
-	static GameEngineTime MainTime;
-	static GameEngineWindow MainWindow;
 
 
 	static void EngineProcess(HINSTANCE _Inst, const std::string& _Name, float4 _Pos, float4 _Size);

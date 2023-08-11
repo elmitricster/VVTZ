@@ -21,6 +21,12 @@ public:
 
 	std::shared_ptr<class GameEngineCamera> CreateCamera(int _Order, int _CameraOrder);
 
+	template<typename ObjectType, typename EnumType>
+	std::shared_ptr<ObjectType> CreateActor(EnumType _Order)
+	{
+		return CreateActor<ObjectType>(static_cast<int>(_Order));
+	}
+
 	template<typename ObjectType>
 	std::shared_ptr<ObjectType> CreateActor(int _Order = 0)
 	{
@@ -36,6 +42,16 @@ public:
 		// std::shared_ptr 진짜 포인터는 아니기 때문에 dynamic_cast 해야할 상황에서
 		// 아래와 같은 함수를 사용하면 된다.
 		return std::dynamic_pointer_cast<ObjectType>(NewChild);
+	}
+
+	std::shared_ptr<GameEngineCamera> GetMainCamera()
+	{
+		return Cameras[0];
+	}
+
+	std::shared_ptr<GameEngineCamera> GetCamera(int _Select)
+	{
+		return Cameras[_Select];
 	}
 
 protected:
@@ -55,6 +71,8 @@ private:
 	void ActorRelease();
 
 	void ActorInit(std::shared_ptr<class GameEngineActor> _Actor, int _Order);
+
+	void Render(float _Delta);
 
 	// 이미 액터가 child로 관리하고 있지만
 	// 따로 카메라도 들고 있을 겁니다.

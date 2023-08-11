@@ -7,6 +7,7 @@
 std::shared_ptr<GameEngineObject> GameEngineCore::CoreObject;
 GameEngineTime GameEngineCore::MainTime;
 GameEngineWindow GameEngineCore::MainWindow;
+GameEngineDevice GameEngineCore::MainDevcie;
 
 std::shared_ptr<GameEngineLevel> GameEngineCore::CurLevel;
 std::shared_ptr<GameEngineLevel> GameEngineCore::NextLevel;
@@ -64,11 +65,24 @@ void GameEngineCore::Update()
 		GameEngineInput::Reset();
 	}
 
-	// 한프레임 동안은 절대로 기본적인 세팅의 
-	// 변화가 없게 하려고 하는 설계의도가 있는것.
-	// 이걸 호출한 애는 PlayLevel
 	CurLevel->AddLiveTime(DeltaTime);
 	CurLevel->AllUpdate(DeltaTime);
+
+	//HDC DC;
+	//{
+	//	DC = GameEngineCore::MainWindow.GetBackBuffer()->GetImageDC();
+	//	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+	//	Rectangle(DC, 0, 0, WinScale.iX(), WinScale.iY());
+	//}
+
+	MainDevcie.RenderStart();
+
+	CurLevel->Render(DeltaTime);
+
+	MainDevcie.RenderEnd();
+
+	// GameEngineCore::MainWindow.DoubleBuffering();
+
 	// GameEngineWindow::MainWindow.ClearBackBuffer();
 	// CurLevel->ActorRender(Delta);
 	// CurLevel->Render(Delta);
@@ -90,6 +104,9 @@ void GameEngineCore::EngineProcess(HINSTANCE _Inst, const std::string& _WindowNa
 	// 윈도우 만들고
 	MainWindow.Open(_WindowName, _Inst);
 	MainWindow.SetPosAndScale(_Pos, _Size);
+
+	// 3D 디바이스를 그 윈도우를 기반으로 만든다.
+	MainDevcie.Initiallize(MainWindow);
 
 	// 시간이나 타임
 	GameEngineWindow::MessageLoop(_Inst, Start, Update, Release);

@@ -13,6 +13,8 @@ class GameEngineObject : public std::enable_shared_from_this<GameEngineObject>
 	friend class GameEngineCore;
 
 public:
+	GameEngineTransform Transform;
+
 	// constrcuter destructer
 	GameEngineObject();
 	virtual ~GameEngineObject();
@@ -91,9 +93,19 @@ public:
 
 	virtual void AllUpdate(float _Delta);
 
-	void SetParent(GameEngineObject* _Parent)
+	void SetParent(GameEngineObject* _Parent, int _Order)
 	{
 		Parent = _Parent;
+		Parent->Childs[_Order].push_back(shared_from_this());
+		Transform.SetParent(_Parent->Transform);
+	}
+
+	template<typename ParentType>
+	void SetParent(std::shared_ptr<ParentType> _Parent)
+	{
+		Parent = _Parent.get();
+		Transform.SetParent(_Parent->Transform);
+		// Parent->Transform.SetParent(_Parent->Transform);
 	}
 
 	GameEngineObject* GetParentObject()
@@ -122,15 +134,12 @@ public:
 		return CameraPtr;
 	}
 
-
-
 protected:
 	GameEngineObject* Parent = nullptr;
 	// 오더링을 위해서
 	std::map<int, std::list<std::shared_ptr<class GameEngineObject>>> Childs;
 
 private:
-	GameEngineTransform Transform;
 
 	std::string Name;
 	float LiveTime = 0.0f;

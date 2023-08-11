@@ -13,6 +13,12 @@
     <Filter Include="Rendering">
       <UniqueIdentifier>{e0030cef-e6ea-4f12-94be-1fffb9776ecd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Device">
+      <UniqueIdentifier>{6d9f50a3-8e4b-4756-8cb5-f984ff764d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{68611777-f493-4f86-8738-7ec9502169c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineCore.h" />
@@ -43,6 +49,18 @@
     <ClInclude Include="GameEngineRenderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineDevice.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineTexture.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineResources.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRenderTarget.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -72,6 +90,18 @@
     </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineDevice.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTexture.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineResources.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderTarget.cpp">
+      <Filter>Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
