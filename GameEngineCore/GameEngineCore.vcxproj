@@ -25,13 +25,19 @@
     <ClInclude Include="GameEngineCore.h" />
     <ClInclude Include="GameEngineCoreObject.h" />
     <ClInclude Include="GameEngineDevice.h" />
+    <ClInclude Include="GameEngineDirectBuffer.h" />
+    <ClInclude Include="GameEngineInputLayOut.h" />
     <ClInclude Include="GameEngineLevel.h" />
     <ClInclude Include="GameEngineObject.h" />
     <ClInclude Include="GameEngineRenderer.h" />
     <ClInclude Include="GameEngineRenderTarget.h" />
     <ClInclude Include="GameEngineResources.h" />
+    <ClInclude Include="GameEngineShader.h" />
     <ClInclude Include="GameEngineTexture.h" />
     <ClInclude Include="GameEngineTransform.h" />
+    <ClInclude Include="GameEngineVertex.h" />
+    <ClInclude Include="GameEngineVertexBuffer.h" />
+    <ClInclude Include="GameEngineVertexShader.h" />
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <ItemGroup>
@@ -41,13 +47,20 @@
     <ClCompile Include="GameEngineCore.cpp" />
     <ClCompile Include="GameEngineCoreObject.cpp" />
     <ClCompile Include="GameEngineDevice.cpp" />
+    <ClCompile Include="GameEngineDevice_Resources.cpp" />
+    <ClCompile Include="GameEngineDirectBuffer.cpp" />
+    <ClCompile Include="GameEngineInputLayOut.cpp" />
     <ClCompile Include="GameEngineLevel.cpp" />
     <ClCompile Include="GameEngineObject.cpp" />
     <ClCompile Include="GameEngineRenderer.cpp" />
     <ClCompile Include="GameEngineRenderTarget.cpp" />
     <ClCompile Include="GameEngineResources.cpp" />
+    <ClCompile Include="GameEngineShader.cpp" />
     <ClCompile Include="GameEngineTexture.cpp" />
     <ClCompile Include="GameEngineTransform.cpp" />
+    <ClCompile Include="GameEngineVertex.cpp" />
+    <ClCompile Include="GameEngineVertexBuffer.cpp" />
+    <ClCompile Include="GameEngineVertexShader.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
