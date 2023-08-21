@@ -31,7 +31,7 @@
     <Filter Include="Vertex">
       <UniqueIdentifier>{b00c7874-5ee1-49c1-9153-69ab1cbac198}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RenderingSetting">
+    <Filter Include="Resources\RenderingSetting">
       <UniqueIdentifier>{6c303080-bcaa-4fee-9907-920d61eeb571}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -98,7 +98,10 @@
       <Filter>Resources\Buffer</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRasterizer.h">
-      <Filter>RenderingSetting</Filter>
+      <Filter>Resources\RenderingSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEnginePixelShader.h">
+      <Filter>Resources\Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,7 +170,10 @@
       <Filter>Resources\Buffer</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRasterizer.cpp">
-      <Filter>RenderingSetting</Filter>
+      <Filter>Resources\RenderingSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEnginePixelShader.cpp">
+      <Filter>Resources\Shader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
