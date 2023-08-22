@@ -116,7 +116,6 @@ public:
 
 
 
-
 	// Get
 	float4 GetWorldPosition()
 	{
@@ -173,6 +172,11 @@ public:
 	}
 
 	void CalChilds();
+
+	float4x4 GetWorldViewPorjectionMatrix()
+	{
+		return TransData.WorldViewPorjectionMatrix;
+	}
 
 protected:
 

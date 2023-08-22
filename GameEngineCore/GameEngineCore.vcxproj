@@ -22,6 +22,7 @@
     <ClInclude Include="GameEngineActor.h" />
     <ClInclude Include="GameEngineCamera.h" />
     <ClInclude Include="GameEngineComponent.h" />
+    <ClInclude Include="GameEngineConstantBuffer.h" />
     <ClInclude Include="GameEngineCore.h" />
     <ClInclude Include="GameEngineCoreObject.h" />
     <ClInclude Include="GameEngineDevice.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="GameEngineActor.cpp" />
     <ClCompile Include="GameEngineCamera.cpp" />
     <ClCompile Include="GameEngineComponent.cpp" />
+    <ClCompile Include="GameEngineConstantBuffer.cpp" />
     <ClCompile Include="GameEngineCore.cpp" />
     <ClCompile Include="GameEngineCoreObject.cpp" />
     <ClCompile Include="GameEngineDevice.cpp" />
