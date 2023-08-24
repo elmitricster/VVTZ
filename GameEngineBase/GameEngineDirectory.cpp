@@ -3,11 +3,11 @@
 #include "GameEngineDebug.h"
 #include "GameEngineString.h"
 
-GameEngineDirectory::GameEngineDirectory() 
+GameEngineDirectory::GameEngineDirectory()
 {
 }
 
-GameEngineDirectory::~GameEngineDirectory() 
+GameEngineDirectory::~GameEngineDirectory()
 {
 }
 
@@ -24,7 +24,7 @@ GameEngineDirectory::GameEngineDirectory(std::string_view _path)
 
 // 자신의 디렉토리의 파일만 넣습니다.
 // 
-std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(std::vector<std::string> _Ext) 
+std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(std::vector<std::string> _Ext)
 {
 
 	std::filesystem::directory_iterator DirIter = std::filesystem::directory_iterator(Path);
@@ -59,6 +59,11 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(std::vector<std::str
 				Check = true;
 				break;
 			}
+		}
+
+		if (0 == UpperFilter.size())
+		{
+			Check = true;
 		}
 
 		if (false == Check)
