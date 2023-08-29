@@ -12,7 +12,6 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
-
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
 		GameEngineDirectory Dir;
@@ -28,7 +27,8 @@ void PlayLevel::Start()
 			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateCut("KOKOMI.png", 8, 4);
+		//GameEngineSprite::CreateCut("KOKOMI.png", 8, 4);
+		GameEngineSprite::CreateSingle("KOKOMI2.png");
 
 	}
 

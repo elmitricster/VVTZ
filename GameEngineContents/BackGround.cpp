@@ -1,27 +1,25 @@
 #include "PreCompile.h"
-#include "Player.h"
+#include "BackGround.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineTexture.h>
 
-Player::Player()
-{
-
-}
-
-Player::~Player()
+BackGround::BackGround()
 {
 }
 
-void Player::Start()
+BackGround::~BackGround()
+{
+}
+
+void BackGround::Start()
 {
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		//MainSpriteRenderer->SetSprite("KOKOMI.png", 0);
-		MainSpriteRenderer->SetSprite("KOKOMI2.png");
+		MainSpriteRenderer->SetSprite("Title01.png");
 	}
 }
 
-void Player::Update(float _Delta)
+void BackGround::Update(float _Delta)
 {
 	float Speed = 100.0f;
 
