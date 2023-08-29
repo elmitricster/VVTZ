@@ -15,10 +15,8 @@ Player::~Player()
 void Player::Start()
 {
 	{
-
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		MainSpriteRenderer->SetSprite("KOKOMI2.png", 5);
-
+		MainSpriteRenderer->SetSprite("KOKOMI.png", 1);
 	}
 }
 

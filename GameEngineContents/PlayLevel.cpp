@@ -1,8 +1,6 @@
 #include "PreCompile.h"
 #include "PlayLevel.h"
 #include "Player.h"
-#include <GameEngineCore/GameEngineRenderer.h>
-#include <GameEngineCore/GameEngineSprite.h>
 
 PlayLevel::PlayLevel()
 {
@@ -30,22 +28,30 @@ void PlayLevel::Start()
 			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateCut("KOKOMI2.png", 6, 6);
+		GameEngineSprite::CreateCut("KOKOMI.png", 8, 4);
 
 	}
-
-
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective);
 
 	std::shared_ptr<Player> NewPlayer = CreateActor<Player>();
-
-	// GetMainCamera()->SetParent(NewPlayer);
-	// CreateActor<GameEngineRenderer>();
 }
 
 void PlayLevel::Update(float _Delta)
+{
+	if (GameEngineInput::IsPress('T'))
+	{
+		GameEngineCore::ChangeLevel("TitleLevel");
+	}
+}
+
+void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
+{
+	int a = 0;
+}
+
+void PlayLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	int a = 0;
 }
