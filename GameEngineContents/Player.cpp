@@ -16,8 +16,11 @@ void Player::Start()
 {
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		//MainSpriteRenderer->SetSprite("KOKOMI.png", 0);
-		MainSpriteRenderer->SetSprite("KOKOMI2.png");
+		MainSpriteRenderer->CreateAnimation("Dance", "KOKOMI_Dance");
+		MainSpriteRenderer->ChangeAnimation("Dance");
+		MainSpriteRenderer->AutoSpriteSizeOn();
+
+		// MainSpriteRenderer->SetSprite("KOKOMI.png", 5);
 	}
 }
 
