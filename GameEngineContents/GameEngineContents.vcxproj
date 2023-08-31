@@ -171,6 +171,7 @@
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h" />
+    <ClInclude Include="PlayMap.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="TitleLevel.h" />
   </ItemGroup>
@@ -179,6 +180,7 @@
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="PlayMap.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PreCompile.h</PrecompiledHeaderFile>

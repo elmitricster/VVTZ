@@ -15,7 +15,7 @@ void BackGround::Start()
 {
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		MainSpriteRenderer->SetSprite("Title01.png");
+		MainSpriteRenderer->SetSprite("Title02.png");
 	}
 }
 

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "PlayLevel.h"
 #include "Player.h"
+#include "PlayMap.h"
 
 PlayLevel::PlayLevel()
 {
@@ -28,7 +29,8 @@ void PlayLevel::Start()
 		}
 
 		GameEngineSprite::CreateCut("KOKOMI.png", 8, 4);
-		//GameEngineSprite::CreateSingle("KOKOMI2.png");
+		GameEngineSprite::CreateSingle("KOKOMI2.png");
+		GameEngineSprite::CreateSingle("TestMap.png");
 	}
 
 	{
@@ -49,10 +51,18 @@ void PlayLevel::Start()
 		}
 	}
 
-	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
+	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
+
+	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	std::shared_ptr<Player> NewPlayer = CreateActor<Player>();
+	{
+		std::shared_ptr<Player> Object = CreateActor<Player>();
+	}
+
+	{
+		std::shared_ptr<PlayMap> Object = CreateActor<PlayMap>();
+	}
 }
 
 void PlayLevel::Update(float _Delta)

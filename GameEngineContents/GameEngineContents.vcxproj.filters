@@ -28,6 +28,9 @@
     <ClInclude Include="BackGround.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="PlayMap.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -44,6 +47,9 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayMap.cpp">
       <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>

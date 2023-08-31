@@ -27,7 +27,7 @@ void TitleLevel::Start()
 			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateSingle("Title01.png");
+		GameEngineSprite::CreateSingle("Title02.png");
 
 	}
 
