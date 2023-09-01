@@ -23,7 +23,6 @@ public:
 		std::shared_ptr<class GameEngineComponent> NewChild = std::make_shared<ObjectType>();
 		ComponentInit(NewChild, _Order);
 
-
 		// GameEngineObject형으로 사용하고 있다면
 		// 내가 잘못형변환하면 Monster 였는데? Player <= 미친듯한 메모리 크러시를 일으킵니다.
 		// 이녀석은 문제가 이유를 알수 없게 터진다??????

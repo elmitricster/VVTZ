@@ -16,9 +16,12 @@ void Player::Start()
 {
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		//MainSpriteRenderer->CreateAnimation("Dance", "KOKOMI_Dance");
-		//MainSpriteRenderer->ChangeAnimation("Dance");
-		MainSpriteRenderer->SetSprite("KOKOMI2.png");
+		MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
+		MainSpriteRenderer->ChangeAnimation("Dance");
+
+		MainSpriteRenderer->SetSamplerState(SamplerOption::LINEAR);
+		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));
+
 		MainSpriteRenderer->AutoSpriteSizeOn();
 		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
 		//MainSpriteRenderer->SetAutoScaleRatio(0.5f);
@@ -29,9 +32,19 @@ void Player::Start()
 	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
 }
 
+void Player::TestEvent(GameEngineRenderer* _Renderer)
+{
+	int a = 0;
+}
+
 void Player::Update(float _Delta)
 {
 	float Speed = 100.0f;
+
+	if (GameEngineInput::IsDown('M'))
+	{
+		MainSpriteRenderer->AnimationPauseSwitch();
+	}
 
 	if (GameEngineInput::IsPress('A'))
 	{
