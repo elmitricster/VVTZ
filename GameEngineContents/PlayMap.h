@@ -22,7 +22,8 @@ public:
 
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
-
+	std::shared_ptr<class GameEngineSpriteRenderer> Renderer;
 };

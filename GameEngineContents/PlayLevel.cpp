@@ -62,11 +62,23 @@ void PlayLevel::Start()
 
 	{
 		std::shared_ptr<PlayMap> Object = CreateActor<PlayMap>();
+		Map = Object;
 	}
 }
 
 void PlayLevel::Update(float _Delta)
 {
+	//static float Time = 0.0f;
+	//Time += _Delta;
+
+	//if (nullptr != Map && 3.0f <= Time)
+	//{
+	//	Map->Death();
+	//	Map = nullptr;
+	//	// Map = nullptr;
+	//}
+
+
 	if (GameEngineInput::IsPress('T'))
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
