@@ -39,6 +39,25 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
+	//if (xxxx 상황이 되면)
+	//{
+	//	MainSpriteRenderer->Death();
+	//	MainSpriteRenderer = nullptr;
+	//}
+
+	// 충돌했냐 안했냐만 보면
+
+	//std::list<std::shared_ptr<Monster>> MonsterList = 
+	//	GetLevel()->GetObjectGroup<Monster>(ContentsType::Monster);
+
+	//for (std::shared_ptr<Monster> MonsterPtr : MonsterList)
+	//{
+	//	if (Renderer->Transform.Collision(MonsterPtr->Renderer->Transform))
+	//	{
+	//		// 충돌했다.
+	//	}
+	//}
+
 	float Speed = 100.0f;
 
 	if (GameEngineInput::IsDown('M'))
