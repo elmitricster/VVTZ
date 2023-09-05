@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineTexture.h>
 #include "PlayMap.h"
+#include "Monster.h"
 
 Player::Player()
 {
@@ -15,7 +16,8 @@ Player::~Player()
 void Player::Start()
 {
 	{
-		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
+		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
+		//MainSpriteRenderer->SetSprite("HoHoYee_AttackABC2");
 		MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
 		MainSpriteRenderer->ChangeAnimation("Dance");
 
@@ -24,8 +26,9 @@ void Player::Start()
 
 		MainSpriteRenderer->AutoSpriteSizeOn();
 		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
-		//MainSpriteRenderer->SetAutoScaleRatio(0.5f);
+		MainSpriteRenderer->SetAutoScaleRatio(0.5f);
 
+		MainSpriteRenderer->Transform.SetLocalScale({ -100.0f, 100.0f, 1.0f });
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -47,16 +50,23 @@ void Player::Update(float _Delta)
 
 	// 충돌했냐 안했냐만 보면
 
-	//std::list<std::shared_ptr<Monster>> MonsterList = 
-	//	GetLevel()->GetObjectGroup<Monster>(ContentsType::Monster);
+	std::list<std::shared_ptr<Monster>> MonsterList =
+		GetLevel()->GetObjectGroupConvert<Monster>(ContentsObjectType::Monster);
 
-	//for (std::shared_ptr<Monster> MonsterPtr : MonsterList)
-	//{
-	//	if (Renderer->Transform.Collision(MonsterPtr->Renderer->Transform))
-	//	{
-	//		// 충돌했다.
-	//	}
-	//}
+	for (std::shared_ptr<Monster> MonsterPtr : MonsterList)
+	{
+		// 랜더러로 하는 이유 => 액터로도 할수있는데
+		// 보통 액터는 위치와 기준을 잡아주는 용도로 사용됩니다.
+		// MainSpriteRenderer->Transform.Collision(MonsterPtr->Renderer->Transform);
+
+		GameEngineTransform& Left = MainSpriteRenderer->Transform;
+		GameEngineTransform& Right = MonsterPtr->Renderer->Transform;
+
+		if (GameEngineTransform::Collision({ Left , Right }))
+		{
+			// 충돌했다.
+		}
+	}
 
 	float Speed = 100.0f;
 

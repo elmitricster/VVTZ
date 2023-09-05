@@ -2,6 +2,7 @@
 #include "PlayLevel.h"
 #include "Player.h"
 #include "PlayMap.h"
+#include "Monster.h"
 
 PlayLevel::PlayLevel()
 {
@@ -57,11 +58,20 @@ void PlayLevel::Start()
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	{
-		std::shared_ptr<Player> Object = CreateActor<Player>();
+		std::shared_ptr<Player> Object = CreateActor<Player>(ContentsObjectType::Player);
 	}
 
 	{
-		std::shared_ptr<PlayMap> Object = CreateActor<PlayMap>();
+		GameEngineRandom NewRanadom;
+		for (size_t i = 0; i < 10; i++)
+		{
+			std::shared_ptr<Monster> Object = CreateActor<Monster>(ContentsObjectType::Monster);
+			Object->Transform.SetLocalPosition(NewRanadom.RandomVectorBox2D(0, 1280, 0, -720));
+		}
+	}
+
+	{
+		std::shared_ptr<PlayMap> Object = CreateActor<PlayMap>(ContentsObjectType::BackGround);
 		Map = Object;
 	}
 }

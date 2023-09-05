@@ -37,6 +37,9 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -56,6 +59,9 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="PlayMap.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
       <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>

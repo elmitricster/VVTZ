@@ -15,7 +15,7 @@ PlayMap::~PlayMap()
 void PlayMap::Start()
 {
 	{
-		Renderer = CreateComponent<GameEngineSpriteRenderer>(-100);
+		Renderer = CreateComponent<GameEngineSpriteRenderer>(0);
 		Renderer->SetSprite("TestMap.png");
 
 		std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find("TestMap.png");
