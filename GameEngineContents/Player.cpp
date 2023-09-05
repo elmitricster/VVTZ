@@ -95,7 +95,7 @@ void Player::Update(float _Delta)
 		Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	}
 
-	GameEngineColor Color = PlayMap::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+	/*GameEngineColor Color = PlayMap::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 
 	if (GameEngineColor::RED != Color)
 	{
@@ -105,7 +105,7 @@ void Player::Update(float _Delta)
 	else
 	{
 		GravityForce = 0.0f;
-	}
+	}*/
 	// 땅에 딱붙게하고 싶다면 while돌려서 올려주세요.
 
 

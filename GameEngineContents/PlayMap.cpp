@@ -29,14 +29,14 @@ void PlayMap::Start()
 
 void PlayMap::Update(float _DeltaTime)
 {
-	static float Time = 5.0f;
+	/*static float Time = 5.0f;
 	Time -= _DeltaTime;
 
 	if (nullptr != Renderer && Time <= 0.0f)
 	{
 		Renderer->Death();
 		Renderer = nullptr;
-	}
+	}*/
 }
 
 GameEngineColor PlayMap::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
