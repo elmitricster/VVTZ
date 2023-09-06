@@ -17,8 +17,8 @@ void Player::Start()
 {
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
-		//MainSpriteRenderer->SetSprite("HoHoYee_AttackABC2");
-		MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
+		MainSpriteRenderer->SetSprite("BOCCHI.jpg");
+		/*MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
 		MainSpriteRenderer->ChangeAnimation("Dance");
 
 		MainSpriteRenderer->SetSamplerState(SamplerOption::LINEAR);
@@ -26,9 +26,9 @@ void Player::Start()
 
 		MainSpriteRenderer->AutoSpriteSizeOn();
 		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
-		MainSpriteRenderer->SetAutoScaleRatio(0.5f);
+		MainSpriteRenderer->SetAutoScaleRatio(0.5f);*/
 
-		MainSpriteRenderer->Transform.SetLocalScale({ -100.0f, 100.0f, 1.0f });
+		MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -62,8 +62,9 @@ void Player::Update(float _Delta)
 		GameEngineTransform& Left = MainSpriteRenderer->Transform;
 		GameEngineTransform& Right = MonsterPtr->Renderer->Transform;
 
-		if (GameEngineTransform::Collision({ Left , Right }))
+		if (GameEngineTransform::Collision({ Left , Right, ColType::OBBBOX2D }))
 		{
+			MonsterPtr->Death();
 			// 충돌했다.
 		}
 	}

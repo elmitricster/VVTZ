@@ -31,6 +31,7 @@ void PlayLevel::Start()
 
 		GameEngineSprite::CreateCut("KOKOMI.png", 8, 4);
 		GameEngineSprite::CreateSingle("KOKOMI2.png");
+		GameEngineSprite::CreateSingle("BOCCHI.jpg");
 		GameEngineSprite::CreateSingle("TestMap.png");
 	}
 
