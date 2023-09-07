@@ -2,8 +2,10 @@
 #include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineTexture.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "PlayMap.h"
 #include "Monster.h"
+#include "ContentsEnum.h"
 
 Player::Player()
 {
@@ -28,7 +30,12 @@ void Player::Start()
 		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
 		MainSpriteRenderer->SetAutoScaleRatio(0.5f);*/
 
-		MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });
+		//MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });
+	}
+
+	{
+		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
+		Col->Transform.SetLocalScale(MainSpriteRenderer->Transform.GetWorldScale());
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -42,6 +49,30 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
+	// 몬스터가 몬스터랑 충돌하고 싶으면?
+	// 내 미래의 위치
+
+	EventParameter Event;
+
+	Event.Enter = [](GameEngineCollision* Col)
+		{
+			Col->GetActor()->Death();
+			int a = 0;
+		};
+
+	Event.Stay = [](GameEngineCollision* Col)
+		{
+			int a = 0;
+		};
+
+
+	Event.Exit = [](GameEngineCollision* Col)
+		{
+			int a = 0;
+		};
+
+	Col->CollisionEvent(ContentsCollisionType::Monster, Event);
+
 	//if (xxxx 상황이 되면)
 	//{
 	//	MainSpriteRenderer->Death();
@@ -50,24 +81,24 @@ void Player::Update(float _Delta)
 
 	// 충돌했냐 안했냐만 보면
 
-	std::list<std::shared_ptr<Monster>> MonsterList =
-		GetLevel()->GetObjectGroupConvert<Monster>(ContentsObjectType::Monster);
+	//std::list<std::shared_ptr<Monster>> MonsterList =
+	//	GetLevel()->GetObjectGroupConvert<Monster>(ContentsObjectType::Monster);
 
-	for (std::shared_ptr<Monster> MonsterPtr : MonsterList)
-	{
-		// 랜더러로 하는 이유 => 액터로도 할수있는데
-		// 보통 액터는 위치와 기준을 잡아주는 용도로 사용됩니다.
-		// MainSpriteRenderer->Transform.Collision(MonsterPtr->Renderer->Transform);
+	//for (std::shared_ptr<Monster> MonsterPtr : MonsterList)
+	//{
+	//	// 랜더러로 하는 이유 => 액터로도 할수있는데
+	//	// 보통 액터는 위치와 기준을 잡아주는 용도로 사용됩니다.
+	//	// MainSpriteRenderer->Transform.Collision(MonsterPtr->Renderer->Transform);
 
-		GameEngineTransform& Left = MainSpriteRenderer->Transform;
-		GameEngineTransform& Right = MonsterPtr->Renderer->Transform;
+	//	GameEngineTransform& Left = MainSpriteRenderer->Transform;
+	//	GameEngineTransform& Right = MonsterPtr->Renderer->Transform;
 
-		if (GameEngineTransform::Collision({ Left , Right, ColType::OBBBOX2D }))
-		{
-			MonsterPtr->Death();
-			// 충돌했다.
-		}
-	}
+	//	if (GameEngineTransform::Collision({ Left , Right, ColType::OBBBOX2D }))
+	//	{
+	//		MonsterPtr->Death();
+	//		// 충돌했다.
+	//	}
+	//}
 
 	float Speed = 100.0f;
 

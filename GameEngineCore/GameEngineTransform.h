@@ -17,12 +17,30 @@ enum class ColType
 	MAX,
 };
 
+class CollisionData
+{
+public:
+	union
+	{
+		// 다이렉트 x에서 지원해주는 충돌용 도형
+		DirectX::BoundingSphere SPHERE;
+		DirectX::BoundingBox AABB;
+		DirectX::BoundingOrientedBox OBB;
+	};
+
+	CollisionData()
+		: OBB()
+	{
+
+	}
+};
+
 class GameEngineTransform;
 class CollisionParameter
 {
 public:
-	GameEngineTransform& Left;
-	GameEngineTransform& Right;
+	CollisionData& Left;
+	CollisionData& Right;
 	ColType LeftType = ColType::AABBBOX2D;
 	ColType RightType = ColType::AABBBOX2D;
 
@@ -37,8 +55,8 @@ public:
 	}
 
 	CollisionParameter(
-		GameEngineTransform& _Left,
-		GameEngineTransform& _Right,
+		CollisionData& _Left,
+		CollisionData& _Right,
 		ColType _LeftType = ColType::AABBBOX2D,
 		ColType _RightType = ColType::AABBBOX2D
 	)
@@ -47,24 +65,6 @@ public:
 		Right(_Right),
 		LeftType(_LeftType),
 		RightType(_RightType)
-	{
-
-	}
-};
-
-class CollisionData
-{
-public:
-	union
-	{
-		// 다이렉트 x에서 지원해주는 충돌용 도형
-		DirectX::BoundingSphere SPHERE;
-		DirectX::BoundingBox AABB;
-		DirectX::BoundingOrientedBox OBB;
-	};
-
-	CollisionData()
-		: OBB()
 	{
 
 	}
@@ -168,7 +168,6 @@ public:
 	{
 		TransData.Rotation += _Value;
 		TransformUpdate();
-
 	}
 
 	void SetLocalPosition(const float4& _Value)
@@ -181,9 +180,7 @@ public:
 	{
 		TransData.Position += _Value;
 		TransformUpdate();
-
 	}
-
 
 
 	// Get
@@ -195,6 +192,11 @@ public:
 	float4 GetLocalScale()
 	{
 		return TransData.LocalScale;
+	}
+
+	float4 GetWorldScale()
+	{
+		return TransData.WorldScale;
 	}
 
 
@@ -267,6 +269,5 @@ private:
 	GameEngineTransform* Parent = nullptr;
 	std::list<GameEngineTransform*> Childs;
 	TransformData TransData;
-
 };
 

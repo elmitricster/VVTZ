@@ -20,6 +20,11 @@ void Monster::Start()
 		NewRandom.SetSeed(reinterpret_cast<long long>(this));
 
 		Renderer->SetSprite("KOKOMI2.png");
-		Renderer->Transform.SetLocalScale(NewRandom.RandomVectorBox2D(10, 100, 10, 100));
+		//Renderer->Transform.SetLocalScale(NewRandom.RandomVectorBox2D(10, 100, 10, 100));
+	}
+
+	{
+		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Monster);
+		Col->Transform.SetLocalScale(Renderer->Transform.GetWorldScale());
 	}
 }
