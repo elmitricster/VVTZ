@@ -1,16 +1,16 @@
 #include "PreCompile.h"
-#include "TitleLevel.h"
+#include "LogoLevel.h"
 #include "BackGround.h"
 
-TitleLevel::TitleLevel()
+LogoLevel::LogoLevel()
 {
 }
 
-TitleLevel::~TitleLevel()
+LogoLevel::~LogoLevel()
 {
 }
 
-void TitleLevel::Start()
+void LogoLevel::Start()
 {
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
@@ -28,6 +28,7 @@ void TitleLevel::Start()
 		}
 
 		GameEngineSprite::CreateSingle("Title02.png");
+		//GameEngineSprite::CreateSingle("Moon.png");
 	}
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
@@ -36,26 +37,21 @@ void TitleLevel::Start()
 	std::shared_ptr<BackGround> Bg = CreateActor<BackGround>(ContentsObjectType::BackGround);
 }
 
-void TitleLevel::Update(float _Delta)
+void LogoLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsDown('P'))
-	{
-		GameEngineCore::ChangeLevel("LogoLevel");
-	}
-
 	if (GameEngineInput::IsDown('N'))
 	{
-		GameEngineCore::ChangeLevel("PlayLevel");
+		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 }
 
 
-void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
+void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	int a = 0;
 }
 
-void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
+void LogoLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	int a = 0;
 }

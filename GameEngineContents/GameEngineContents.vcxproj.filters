@@ -40,6 +40,12 @@
     <ClInclude Include="Monster.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="LogoLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -63,6 +69,12 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

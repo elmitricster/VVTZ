@@ -194,11 +194,6 @@ public:
 		return TransData.LocalScale;
 	}
 
-	float4 GetWorldScale()
-	{
-		return TransData.WorldScale;
-	}
-
 
 	// 회전 그 자체로 한 오브젝트의 앞 위 오른쪽
 	// [1][0][0][0] 오른쪽

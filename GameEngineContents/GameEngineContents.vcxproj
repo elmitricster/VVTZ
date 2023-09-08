@@ -170,6 +170,8 @@
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="EndingLevel.h" />
+    <ClInclude Include="LogoLevel.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h" />
@@ -180,6 +182,8 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="ContentsCore.cpp" />
+    <ClCompile Include="EndingLevel.cpp" />
+    <ClCompile Include="LogoLevel.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayLevel.cpp" />

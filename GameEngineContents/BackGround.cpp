@@ -5,6 +5,7 @@
 
 BackGround::BackGround()
 {
+	
 }
 
 BackGround::~BackGround()
@@ -13,10 +14,8 @@ BackGround::~BackGround()
 
 void BackGround::Start()
 {
-	{
-		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		MainSpriteRenderer->SetSprite("Title02.png");
-	}
+	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	MainSpriteRenderer->SetSprite("Title02.png");
 }
 
 void BackGround::Update(float _Delta)

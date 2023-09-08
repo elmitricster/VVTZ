@@ -35,7 +35,7 @@ void Player::Start()
 
 	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
-		Col->Transform.SetLocalScale(MainSpriteRenderer->Transform.GetWorldScale());
+		Col->Transform.SetLocalScale(MainSpriteRenderer->Transform.GetLocalScale());
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();

@@ -90,9 +90,14 @@ void PlayLevel::Update(float _Delta)
 	//}
 
 
-	if (GameEngineInput::IsPress('T'))
+	if (GameEngineInput::IsDown('P'))
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
+	}
+
+	if (GameEngineInput::IsDown('N'))
+	{
+		GameEngineCore::ChangeLevel("EndingLevel");
 	}
 }
 
