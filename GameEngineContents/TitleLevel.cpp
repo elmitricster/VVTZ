@@ -27,7 +27,7 @@ void TitleLevel::Start()
 			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateSingle("Title02.png");
+		//GameEngineSprite::CreateSingle("Title02.png");
 	}
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });

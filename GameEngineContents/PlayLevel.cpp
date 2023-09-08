@@ -48,8 +48,6 @@ void PlayLevel::Start()
 			GameEngineDirectory& Dir = Directorys[i];
 
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-
-			// GameEngineTexture::Load(File.GetStringPath());
 		}
 	}
 

@@ -21,4 +21,5 @@ protected:
 
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> MainSpriteRenderer;
+	std::shared_ptr<class GameEngineSpriteRenderer> MainSpriteRenderer2;
 };

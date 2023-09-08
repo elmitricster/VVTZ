@@ -20,6 +20,8 @@ void Player::Start()
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
 		MainSpriteRenderer->SetSprite("BOCCHI.jpg");
+		MainSpriteRenderer->SetImageScale({250.0f, 300.0f, 1.0f});
+
 		/*MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
 		MainSpriteRenderer->ChangeAnimation("Dance");
 
@@ -34,8 +36,16 @@ void Player::Start()
 	}
 
 	{
+		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
+		MainSpriteRenderer->SetSprite("HoHoYee_AttackABC2");
+		MainSpriteRenderer->Transform.SetLocalPosition({ -100, 150, 1.0f });
+		MainSpriteRenderer->SetImageScale({ 200.0f, 20.0f });
+		MainSpriteRenderer->SetPivotType(PivotType::Left);
+	}
+
+	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
-		Col->Transform.SetLocalScale(MainSpriteRenderer->Transform.GetLocalScale());
+		Col->Transform.SetLocalScale({ 250.0f, 300.0f, 1.0f });
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -49,6 +59,8 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
+	MainSpriteRenderer->AddImageScale(float4{ -10.0f, 0.0f, 0.0f } *_Delta);
+
 	// 몬스터가 몬스터랑 충돌하고 싶으면?
 	// 내 미래의 위치
 

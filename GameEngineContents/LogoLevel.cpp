@@ -28,7 +28,7 @@ void LogoLevel::Start()
 		}
 
 		GameEngineSprite::CreateSingle("Title02.png");
-		//GameEngineSprite::CreateSingle("Moon.png");
+		GameEngineSprite::CreateSingle("Moon.png");
 	}
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });

@@ -25,6 +25,6 @@ void Monster::Start()
 
 	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Monster);
-		Col->Transform.SetLocalScale(Renderer->Transform.GetLocalScale());
+		Col->Transform.SetLocalScale({200.0f, 200.0f, 1.0f});
 	}
 }
