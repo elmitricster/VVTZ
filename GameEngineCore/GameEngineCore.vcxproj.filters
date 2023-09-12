@@ -49,6 +49,9 @@
     <Filter Include="Collision">
       <UniqueIdentifier>{c402faeb-8a85-437f-9af6-c8aea23f0105}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Contents">
+      <UniqueIdentifier>{7c54f754-bb2d-46c9-89b2-6ce6bafba1eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineCore.h" />
@@ -139,6 +142,12 @@
     <ClInclude Include="GameEngineCollisionGroup.h">
       <Filter>Collision</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineBlend.h">
+      <Filter>Resources\RenderingSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineTileMap.h">
+      <Filter>Rendering\Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -228,6 +237,12 @@
     </ClCompile>
     <ClCompile Include="GameEngineCollisionGroup.cpp">
       <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineBlend.cpp">
+      <Filter>Resources\RenderingSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTileMap.cpp">
+      <Filter>Rendering\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

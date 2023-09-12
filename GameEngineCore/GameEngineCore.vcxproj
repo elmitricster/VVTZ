@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineActor.h" />
+    <ClInclude Include="GameEngineBlend.h" />
     <ClInclude Include="GameEngineCamera.h" />
     <ClInclude Include="GameEngineCollision.h" />
     <ClInclude Include="GameEngineCollisionGroup.h" />
@@ -43,6 +44,7 @@
     <ClInclude Include="GameEngineSprite.h" />
     <ClInclude Include="GameEngineSpriteRenderer.h" />
     <ClInclude Include="GameEngineTexture.h" />
+    <ClInclude Include="GameEngineTileMap.h" />
     <ClInclude Include="GameEngineTransform.h" />
     <ClInclude Include="GameEngineVertex.h" />
     <ClInclude Include="GameEngineVertexBuffer.h" />
@@ -52,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
+    <ClCompile Include="GameEngineBlend.cpp" />
     <ClCompile Include="GameEngineCamera.cpp" />
     <ClCompile Include="GameEngineCollision.cpp" />
     <ClCompile Include="GameEngineCollisionGroup.cpp" />
@@ -76,6 +79,7 @@
     <ClCompile Include="GameEngineSprite.cpp" />
     <ClCompile Include="GameEngineSpriteRenderer.cpp" />
     <ClCompile Include="GameEngineTexture.cpp" />
+    <ClCompile Include="GameEngineTileMap.cpp" />
     <ClCompile Include="GameEngineTransform.cpp" />
     <ClCompile Include="GameEngineVertex.cpp" />
     <ClCompile Include="GameEngineVertexBuffer.cpp" />

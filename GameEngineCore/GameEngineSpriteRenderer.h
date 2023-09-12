@@ -93,7 +93,20 @@ public:
 		AutoScaleRatio = _Ratio;
 	}
 
-	void SetSamplerState(SamplerOption _Option);
+	bool IsRight()
+	{
+		return 0 < AutoScaleRatio.X;
+	}
+
+	void RightFlip()
+	{
+		AutoScaleRatio.X = abs(AutoScaleRatio.X);
+	}
+
+	void LeftFlip()
+	{
+		AutoScaleRatio.X = -abs(AutoScaleRatio.X);
+	}
 
 	void Flip()
 	{
@@ -109,6 +122,8 @@ public:
 	{
 		AutoScaleRatio.X = -abs(AutoScaleRatio.X);
 	}
+
+	void SetSamplerState(SamplerOption _Option);
 
 	bool IsCurAnimationEnd()
 	{
