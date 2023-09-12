@@ -46,6 +46,9 @@
     <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -75,6 +78,9 @@
     </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
