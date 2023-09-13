@@ -76,35 +76,42 @@ void PlayLevel::Start()
 		Map = Object;
 	}
 
-	/*{
+	{
 		std::shared_ptr<TileMap> Object = CreateActor<TileMap>(ContentsObjectType::BackGround);
 
 		size_t TileX = 100;
 		size_t TileY = 100;
 
-		Object->TileRenderer->CreateTileMap({ TileX, TileY, {80, 80}, "TileEx.png" });
+		Object->TileRenderer->CreateTileMap({ TileX, TileY, {80, 80}, "kokomi2.png" });
 
 		for (size_t y = 0; y < TileY; y++)
 		{
 			for (size_t x = 0; x < TileX; x++)
 			{
-				Object->TileRenderer->SetTile({ y, x,});
+				Object->TileRenderer->SetTileIndex({ y, x });
 			}
 		}
-	}*/
+
+		TileMapObject = Object;
+	}
 }
 
 void PlayLevel::Update(float _Delta)
 {
-	//static float Time = 0.0f;
-	//Time += _Delta;
+	std::string FPS;
+	FPS = std::to_string(static_cast<int>(1.0f / _Delta));
+	FPS += "\n";
+	OutputDebugStringA(FPS.c_str());
 
-	//if (nullptr != Map && 3.0f <= Time)
-	//{
-	//	Map->Death();
-	//	Map = nullptr;
-	//	// Map = nullptr;
-	//}
+	static size_t X = 0;
+
+	if (GameEngineInput::IsDown('Y'))
+	{
+		TileMapObject->TileRenderer->SetTilePos({ PlayerObject->Transform.GetWorldPosition(), 1 });
+
+		// TileMapObject->TileRenderer->SetTile({ ++X, 0, 1 });
+		int a = 0;
+	}
 
 
 	if (GameEngineInput::IsDown('P'))

@@ -13,10 +13,9 @@ class GameEngineFrameAnimation
 
 	std::shared_ptr<GameEngineSprite> Sprite = nullptr;
 
-	float Inter;
+	// float Inter;
 	bool Loop;
 	bool IsEnd;
-
 	bool EventCheck = false;
 
 	unsigned int Start;
@@ -34,6 +33,9 @@ class GameEngineFrameAnimation
 	SpriteData Update(float _DeltaTime);
 
 	void EventCall(int _Frame);
+
+public:
+	std::vector<float> Inter;
 };
 
 enum class SamplerOption
@@ -135,6 +137,18 @@ public:
 		return CurFrameAnimations->AnimationName == _AnimationName;
 	}
 
+	std::shared_ptr<GameEngineFrameAnimation> FindAnimation(std::string_view _AnimationName)
+	{
+		std::string UpperName = GameEngineString::ToUpperReturn(_AnimationName);
+
+		if (false == FrameAnimations.contains(UpperName))
+		{
+			return nullptr;
+		}
+
+		return FrameAnimations[UpperName];
+	}
+
 	void AnimationPauseSwitch();
 	void AnimationPauseOn();
 	void AnimationPauseOff();
@@ -180,6 +194,7 @@ private:
 	SpriteData CurSprite;
 
 	std::shared_ptr<class GameEngineSampler> Sampler;
+
 	bool IsImageSize = false;
 	float4 AutoScaleRatio = { 1.0f, 1.0f, 1.0f };
 	bool IsPause = false;

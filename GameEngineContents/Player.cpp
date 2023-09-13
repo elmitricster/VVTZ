@@ -24,14 +24,13 @@ void Player::Start()
 
 		/*MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
 		MainSpriteRenderer->ChangeAnimation("Dance");
-
 		MainSpriteRenderer->SetSamplerState(SamplerOption::LINEAR);
-		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));
 
-		MainSpriteRenderer->AutoSpriteSizeOn();
-		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
-		MainSpriteRenderer->SetAutoScaleRatio(0.5f);*/
+		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));*/
 
+		//MainSpriteRenderer->AutoSpriteSizeOn();
+		//MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
+		//MainSpriteRenderer->SetAutoScaleRatio(0.5f);
 		//MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });
 	}
 

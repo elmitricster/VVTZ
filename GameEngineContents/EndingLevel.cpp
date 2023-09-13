@@ -11,7 +11,7 @@ EndingLevel::~EndingLevel()
 
 void EndingLevel::Start()
 {
-
+	GameEngineCore::GetBackBufferRenderTarget()->SetClearColor({ 0, 0, 0, 1 });
 }
 
 void EndingLevel::Update(float _Delta)
