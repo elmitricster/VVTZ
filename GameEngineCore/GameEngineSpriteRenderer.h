@@ -49,6 +49,7 @@ enum class PivotType
 	Center,
 	Bottom,
 	Left,
+	LeftTop,
 };
 
 // Ό³Έν :
@@ -157,6 +158,10 @@ public:
 	void SetEndEvent(std::string_view _AnimationName, std::function<void(GameEngineSpriteRenderer*)> _Function);
 	void SetFrameEvent(std::string_view _AnimationName, int _Frame, std::function<void(GameEngineSpriteRenderer*)> _Function);
 
+	void SetPivotValue(const float4& _Value)
+	{
+		Pivot = _Value;
+	}
 	void SetPivotType(PivotType _Type);
 
 	void SetImageScale(const float4& _Scale);
