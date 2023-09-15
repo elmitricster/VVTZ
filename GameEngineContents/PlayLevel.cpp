@@ -82,7 +82,8 @@ void PlayLevel::Start()
 		size_t TileX = 100;
 		size_t TileY = 100;
 
-		Object->TileRenderer->CreateTileMap({ TileX, TileY, {80, 80}, "kokomi2.png" });
+		Object->TileRenderer->CreateTileMap({ TileX, TileY, {64, 64}, "kokomi2.png" });
+		Object->TileRenderer->SetSamplerState(SAMPLER_OBJECT::LINEAR);
 
 		for (size_t y = 0; y < TileY; y++)
 		{
@@ -103,15 +104,14 @@ void PlayLevel::Update(float _Delta)
 	FPS += "\n";
 	OutputDebugStringA(FPS.c_str());
 
-	static size_t X = 0;
+	//static size_t X = 0;
+	//if (GameEngineInput::IsDown('Y'))
+	//{
+	//	TileMapObject->TileRenderer->SetTilePos({ PlayerObject->Transform.GetWorldPosition(), 1 });
 
-	if (GameEngineInput::IsDown('Y'))
-	{
-		TileMapObject->TileRenderer->SetTilePos({ PlayerObject->Transform.GetWorldPosition(), 1 });
-
-		// TileMapObject->TileRenderer->SetTile({ ++X, 0, 1 });
-		int a = 0;
-	}
+	//	// TileMapObject->TileRenderer->SetTile({ ++X, 0, 1 });
+	//	int a = 0;
+	//}
 
 
 	if (GameEngineInput::IsDown('P'))
