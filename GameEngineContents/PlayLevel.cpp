@@ -15,6 +15,8 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
+	GameEngineCore::GetBackBufferRenderTarget()->SetClearColor({ 0, 0, 0, 1 });
+
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
 		GameEngineDirectory Dir;
@@ -60,6 +62,7 @@ void PlayLevel::Start()
 
 	{
 		std::shared_ptr<Player> Object = CreateActor<Player>(ContentsObjectType::Player);
+		PlayerObject = Object;
 	}
 
 	{
@@ -76,7 +79,7 @@ void PlayLevel::Start()
 		Map = Object;
 	}
 
-	{
+	/*{
 		std::shared_ptr<TileMap> Object = CreateActor<TileMap>(ContentsObjectType::BackGround);
 
 		size_t TileX = 100;
@@ -94,25 +97,15 @@ void PlayLevel::Start()
 		}
 
 		TileMapObject = Object;
-	}
+	}*/
 }
 
 void PlayLevel::Update(float _Delta)
 {
-	std::string FPS;
+	/*std::string FPS;
 	FPS = std::to_string(static_cast<int>(1.0f / _Delta));
 	FPS += "\n";
-	OutputDebugStringA(FPS.c_str());
-
-	//static size_t X = 0;
-	//if (GameEngineInput::IsDown('Y'))
-	//{
-	//	TileMapObject->TileRenderer->SetTilePos({ PlayerObject->Transform.GetWorldPosition(), 1 });
-
-	//	// TileMapObject->TileRenderer->SetTile({ ++X, 0, 1 });
-	//	int a = 0;
-	//}
-
+	OutputDebugStringA(FPS.c_str());*/
 
 	if (GameEngineInput::IsDown('P'))
 	{

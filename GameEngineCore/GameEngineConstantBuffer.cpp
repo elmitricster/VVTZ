@@ -31,7 +31,9 @@ void GameEngineConstantBuffer::ResCreate(int _ByteSize)
 
 void GameEngineConstantBuffer::Setting(UINT _Slot)
 {
-	switch (Type)
+	GameEngineCore::GetContext()->VSSetConstantBuffers(_Slot, 1, &Buffer);
+
+	/*switch (Type)
 	{
 	case ShaderType::None:
 		break;
@@ -53,7 +55,7 @@ void GameEngineConstantBuffer::Setting(UINT _Slot)
 		break;
 	default:
 		break;
-	}
+	}*/
 
 	// GameEngineCore::GetContext()->VSSetConstantBuffers()
 }

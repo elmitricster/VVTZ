@@ -34,13 +34,13 @@ void Player::Start()
 		//MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });
 	}
 
-	{
+	/*{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
 		MainSpriteRenderer->SetSprite("HoHoYee_AttackABC2");
 		MainSpriteRenderer->Transform.SetLocalPosition({ -100, 150, 1.0f });
 		MainSpriteRenderer->SetImageScale({ 200.0f, 20.0f });
 		MainSpriteRenderer->SetPivotType(PivotType::Left);
-	}
+	}*/
 
 	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
@@ -58,7 +58,7 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
-	MainSpriteRenderer->AddImageScale(float4{ -10.0f, 0.0f, 0.0f } *_Delta);
+	//MainSpriteRenderer->AddImageScale(float4{ -10.0f, 0.0f, 0.0f } *_Delta);
 
 	// 몬스터가 몬스터랑 충돌하고 싶으면?
 	// 내 미래의 위치
@@ -75,7 +75,6 @@ void Player::Update(float _Delta)
 		{
 			int a = 0;
 		};
-
 
 	Event.Exit = [](GameEngineCollision* _this, GameEngineCollision* Col)
 		{
@@ -147,6 +146,13 @@ void Player::Update(float _Delta)
 	{
 		Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	}
+
+	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(Transform.GetWorldPosition());
+	
+	float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
+	OutputDebugStringA(WorldMousePos.ToString("\n").c_str());
+
+	// OutputDebugStringA(GameEngineCore::MainWindow.GetMousePos().ToString("\n").c_str());
 
 	/*GameEngineColor Color = PlayMap::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 
