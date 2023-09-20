@@ -34,13 +34,13 @@ void Player::Start()
 		//MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });
 	}
 
-	/*{
+	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
 		MainSpriteRenderer->SetSprite("HoHoYee_AttackABC2");
 		MainSpriteRenderer->Transform.SetLocalPosition({ -100, 150, 1.0f });
 		MainSpriteRenderer->SetImageScale({ 200.0f, 20.0f });
 		MainSpriteRenderer->SetPivotType(PivotType::Left);
-	}*/
+	}
 
 	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
@@ -58,7 +58,7 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
-	//MainSpriteRenderer->AddImageScale(float4{ -10.0f, 0.0f, 0.0f } *_Delta);
+	MainSpriteRenderer->AddImageScale(float4{ -10.0f, 0.0f, 0.0f } *_Delta);
 
 	// 몬스터가 몬스터랑 충돌하고 싶으면?
 	// 내 미래의 위치
