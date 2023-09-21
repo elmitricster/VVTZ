@@ -57,17 +57,18 @@ public:
 		Name = _Name;
 	}
 
+	std::string_view GetName()
+	{
+		return Name;
+	}
 
 protected:
-
-
 	static std::shared_ptr<ResourcesType> CreateRes()
 	{
 		std::shared_ptr<ResourcesType> NewRes = std::make_shared<ResourcesType>();
 		UnNameRes.push_back(NewRes);
 		return NewRes;
 	}
-
 
 	static std::shared_ptr<ResourcesType> CreateRes(std::string_view _Name)
 	{

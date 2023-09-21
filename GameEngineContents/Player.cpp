@@ -24,7 +24,6 @@ void Player::Start()
 
 		/*MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
 		MainSpriteRenderer->ChangeAnimation("Dance");
-		MainSpriteRenderer->SetSamplerState(SamplerOption::LINEAR);
 
 		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));*/
 

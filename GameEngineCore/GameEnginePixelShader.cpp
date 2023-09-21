@@ -50,8 +50,8 @@ void GameEnginePixelShader::ShaderLoad(
 		UniPath.c_str(), // 경로
 		nullptr, // 쉐이더에서 사용할 매크로 매크로는 안씁니다.
 		D3D_COMPILE_STANDARD_FILE_INCLUDE, // 내부에서 사용한 #include 그냥 겠다. 내가 직접 안넣어준다.
-		EntryName.c_str(), // "ColorShader_VS"
-		Version.c_str(), // "vs_5_0"
+		EntryName.c_str(), // "ColorShader_PS"
+		Version.c_str(), // "ps_5_0"
 		Flag,
 		0, // 뭔지 모름.
 		&BinaryCode,
@@ -75,6 +75,8 @@ void GameEnginePixelShader::ShaderLoad(
 	{
 		MsgBoxAssert("픽셀 쉐이더 생성에 실패했습니다.");
 	}
+
+	ShaderResCheck();
 }
 
 void GameEnginePixelShader::Setting()
