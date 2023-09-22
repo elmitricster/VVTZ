@@ -91,8 +91,8 @@ void GameEngineSpriteRenderer::Start()
 
 	const TransformData& Data = ImageTransform.GetConstTransformDataRef();
 	ShaderResHelper.ConstantBufferLink("TransformData", Data);
-
 	ShaderResHelper.ConstantBufferLink("SpriteData", CurSprite.SpritePivot);
+	ShaderResHelper.SetTexture("DiffuseTex", "NSet.Png");
 
 	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
 	//if (nullptr != Buffer)
@@ -131,7 +131,7 @@ void GameEngineSpriteRenderer::AddImageScale(const float4& _Scale)
 
 void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 {
-	/*float4 ParentScale = Transform.GetLocalScale();
+	float4 ParentScale = Transform.GetLocalScale();
 	float4 Scale = ImageTransform.GetLocalScale();
 
 	float4 CalPivot = Pivot;
@@ -145,22 +145,11 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 	ImageTransform.SetLocalPosition(PivotPos);
 
 	ImageTransform.TransformUpdate();
-	ImageTransform.CalculationViewAndProjection(Transform.GetConstTransformDataRef());*/
+	ImageTransform.CalculationViewAndProjection(Transform.GetConstTransformDataRef());
+
+	ShaderResHelper.SetTexture("DiffuseTex", CurSprite.Texture);
 
 	GameEngineRenderer::Render(_Camera, _Delta);
-
-	//GameEngineRenderer::ResSetting();
-
-	//if (nullptr == Sampler)
-	//{
-	//	MsgBoxAssert("존재하지 않는 샘플러를 사용하려고 했습니다.");
-	//}
-	//Sampler->PSSetting(0);
-
-
-	// 내꺼 쪼금더 넣고 
-
-	// GameEngineRenderer::Draw();
 }
 
 void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int index /*= 0*/)

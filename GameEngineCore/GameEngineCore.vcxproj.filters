@@ -58,6 +58,9 @@
     <Filter Include="Resources\Material">
       <UniqueIdentifier>{abc4bab4-3d1b-4ed9-b7cd-8ecd3a8a802e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{948f6609-d1a8-4418-9fe5-13e796309b1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineCore.h" />
