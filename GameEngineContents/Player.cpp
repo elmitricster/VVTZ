@@ -1,8 +1,5 @@
 #include "PreCompile.h"
 #include "Player.h"
-#include <GameEngineCore/GameEngineSpriteRenderer.h>
-#include <GameEngineCore/GameEngineTexture.h>
-#include <GameEngineCore/GameEngineCollision.h>
 #include "PlayMap.h"
 #include "Monster.h"
 #include "ContentsEnum.h"
@@ -25,21 +22,21 @@ void Player::Start()
 		/*MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
 		MainSpriteRenderer->ChangeAnimation("Dance");
 
-		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));*/
+		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));
 
-		//MainSpriteRenderer->AutoSpriteSizeOn();
-		//MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
-		//MainSpriteRenderer->SetAutoScaleRatio(0.5f);
-		//MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });
+		MainSpriteRenderer->AutoSpriteSizeOn();
+		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
+		MainSpriteRenderer->SetAutoScaleRatio(0.5f);
+		MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });*/
 	}
 
-	{
+	/*{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
 		MainSpriteRenderer->SetSprite("HoHoYee_AttackABC2");
 		MainSpriteRenderer->Transform.SetLocalPosition({ -100, 150, 1.0f });
 		MainSpriteRenderer->SetImageScale({ 200.0f, 20.0f });
 		MainSpriteRenderer->SetPivotType(PivotType::Left);
-	}
+	}*/
 
 	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
@@ -118,11 +115,13 @@ void Player::Update(float _Delta)
 
 	if (GameEngineInput::IsPress('A'))
 	{
+		MainSpriteRenderer->LeftFlip();
 		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
 	}
 
 	if (GameEngineInput::IsPress('D'))
 	{
+		MainSpriteRenderer->RightFlip();
 		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}
 
@@ -148,8 +147,8 @@ void Player::Update(float _Delta)
 
 	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(Transform.GetWorldPosition());
 	
-	float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
-	OutputDebugStringA(WorldMousePos.ToString("\n").c_str());
+	// float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
+	// OutputDebugStringA(WorldMousePos.ToString("\n").c_str());
 
 	// OutputDebugStringA(GameEngineCore::MainWindow.GetMousePos().ToString("\n").c_str());
 

@@ -70,9 +70,9 @@ public:
 	GameEngineShaderResHelper& operator=(GameEngineShaderResHelper&& _Other) noexcept = delete;
 
 	// 쉐이더의 컴파일된 코드 결과물
-	void ShaderResCheck(std::string _FunctionName, GameEngineShader* _Shader, ID3DBlob* _CompileCode);
+	void ShaderResCheck(std::string _FunctionName, class GameEngineShader* _Shader, ID3DBlob* _CompileCode);
 
-	void ShaderResCopy(GameEngineShader* _Shader);
+	void ShaderResCopy(class GameEngineShader* _Shader);
 
 	void AllShaderResourcesSetting();
 
@@ -99,18 +99,20 @@ public:
 
 	// 여기에 값형만 들어갑니다.
 	template<typename DataType>
-	void ConstantBufferLink(std::string_view _Name, const DataType& _Data)
+	void SetConstantBufferLink(std::string_view _Name, const DataType& _Data)
 	{
-		ConstantBufferLink(_Name, &_Data, sizeof(_Data));
+		SetConstantBufferLink(_Name, &_Data, sizeof(_Data));
 	}
 
-	void ConstantBufferLink(std::string_view _Name, const void* _Data, size_t _Size);
+	void SetConstantBufferLink(std::string_view _Name, const void* _Data, size_t _Size);
 
 	void SetTexture(std::string_view _Name, std::string_view _TextureName);
 
 	void SetTexture(std::string_view _Name, std::shared_ptr<GameEngineTexture> _Texture);
 
 	void SetSampler(std::string_view _Name, std::shared_ptr<GameEngineSampler> _TextureSampler);
+
+	void ResClear();
 
 protected:
 
