@@ -49,6 +49,9 @@
     <ClInclude Include="TileMap.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="MainUIActor.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -80,6 +83,9 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MainUIActor.cpp">
       <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>

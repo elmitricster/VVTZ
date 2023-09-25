@@ -19,15 +19,13 @@ void Player::Start()
 		MainSpriteRenderer->SetSprite("BOCCHI.jpg");
 		MainSpriteRenderer->SetImageScale({250.0f, 300.0f, 1.0f});
 
-		/*MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
+		/*MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
+		MainSpriteRenderer->CreateAnimation("Dance", "Lu", 0.1f, -1, -1, true);
 		MainSpriteRenderer->ChangeAnimation("Dance");
-
-		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));
-
+		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 0.0f, 0.0f});
 		MainSpriteRenderer->AutoSpriteSizeOn();
-		MainSpriteRenderer->Transform.SetLocalPosition({ 0.0f, 100.0f, 0.0f, 0.0f });
-		MainSpriteRenderer->SetAutoScaleRatio(0.5f);
-		MainSpriteRenderer->Transform.SetLocalScale({ 200.0f, 200.0f, 1.0f });*/
+
+		MainSpriteRenderer->SetEndEvent("Dance", std::bind(&Player::TestEvent, this, std::placeholders::_1));*/
 	}
 
 	/*{
@@ -49,16 +47,10 @@ void Player::Start()
 
 void Player::TestEvent(GameEngineRenderer* _Renderer)
 {
-	int a = 0;
 }
 
 void Player::Update(float _Delta)
 {
-	MainSpriteRenderer->AddImageScale(float4{ -10.0f, 0.0f, 0.0f } *_Delta);
-
-	// 몬스터가 몬스터랑 충돌하고 싶으면?
-	// 내 미래의 위치
-
 	EventParameter Event;
 
 	Event.Enter = [](GameEngineCollision* _this, GameEngineCollision* Col)
@@ -137,11 +129,13 @@ void Player::Update(float _Delta)
 
 	if (GameEngineInput::IsPress('Q'))
 	{
+		GetLevel()->GetMainCamera()->AddZoomValue(-_Delta);
 		Transform.AddLocalRotation({ 0.0f, 0.0f, 360.0f * _Delta });
 	}
 
 	if (GameEngineInput::IsPress('E'))
 	{
+		GetLevel()->GetMainCamera()->AddZoomValue(+_Delta);
 		Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	}
 

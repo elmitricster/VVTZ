@@ -4,6 +4,7 @@
 #include "PlayMap.h"
 #include "Monster.h"
 #include "TileMap.h"
+#include "MainUIActor.h"
 
 PlayLevel::PlayLevel()
 {
@@ -66,27 +67,30 @@ void PlayLevel::Start()
 	}
 
 	{
-		GameEngineRandom NewRanadom;
-		for (size_t i = 0; i < 10; i++)
-		{
-			std::shared_ptr<Monster> Object = CreateActor<Monster>(ContentsObjectType::Monster);
-			Object->Transform.SetLocalPosition(NewRanadom.RandomVectorBox2D(0, 1280, 0, -720));
-		}
+		std::shared_ptr<MainUIActor> Object = CreateActor<MainUIActor>(ContentsObjectType::UI);
 	}
+
+	//{
+	//	GameEngineRandom NewRanadom;
+	//	for (size_t i = 0; i < 10; i++)
+	//	{
+	//		std::shared_ptr<Monster> Object = CreateActor<Monster>(ContentsObjectType::Monster);
+	//		Object->Transform.SetLocalPosition(NewRanadom.RandomVectorBox2D(0, 1280, 0, -720));
+	//	}
+	//}
 
 	{
 		std::shared_ptr<PlayMap> Object = CreateActor<PlayMap>(ContentsObjectType::BackGround);
 		Map = Object;
 	}
 
-	/*{
+	{
 		std::shared_ptr<TileMap> Object = CreateActor<TileMap>(ContentsObjectType::BackGround);
 
 		size_t TileX = 100;
 		size_t TileY = 100;
 
 		Object->TileRenderer->CreateTileMap({ TileX, TileY, {64, 64}, "kokomi2.png" });
-		Object->TileRenderer->SetSamplerState(SAMPLER_OBJECT::LINEAR);
 
 		for (size_t y = 0; y < TileY; y++)
 		{
@@ -97,7 +101,7 @@ void PlayLevel::Start()
 		}
 
 		TileMapObject = Object;
-	}*/
+	}
 }
 
 void PlayLevel::Update(float _Delta)

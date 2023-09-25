@@ -12,6 +12,7 @@ enum class ContentsObjectType
 	BackGround,
 	Player,
 	Monster,
+	UI,
 };
 
 
