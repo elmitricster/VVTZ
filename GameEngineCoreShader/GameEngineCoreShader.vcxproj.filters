@@ -8,6 +8,7 @@
     <FxCompile Include="RenderBase.fx">
       <Filter>Header</Filter>
     </FxCompile>
+    <FxCompile Include="DebugColorShader.fx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TextureShader.fx" />

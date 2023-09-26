@@ -51,6 +51,8 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
+	GameEngineDebug::DrawBox2D(MainSpriteRenderer->Transform);
+
 	EventParameter Event;
 
 	Event.Enter = [](GameEngineCollision* _this, GameEngineCollision* Col)
