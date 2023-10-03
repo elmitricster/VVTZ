@@ -16,6 +16,7 @@ class GameEngineFrameAnimation
 	// float Inter;
 	bool Loop;
 	bool IsEnd;
+
 	bool EventCheck = false;
 
 	unsigned int Start;
@@ -42,7 +43,12 @@ public:
 enum class PivotType
 {
 	Center,
+	Top,
+	RightUp,
+	Right,
+	RightBottom,
 	Bottom,
+	LeftBottom,
 	Left,
 	LeftTop,
 };
@@ -159,7 +165,6 @@ public:
 		Pivot = _Value;
 	}
 	void SetPivotType(PivotType _Type);
-
 	void SetImageScale(const float4& _Scale);
 	void AddImageScale(const float4& _Scale);
 
@@ -176,6 +181,11 @@ public:
 	inline unsigned int GetCurIndex() const
 	{
 		return CurFrameAnimations->CurIndex;
+	}
+
+	inline GameEngineTransform& GetImageTransform()
+	{
+		return ImageTransform;
 	}
 
 protected:

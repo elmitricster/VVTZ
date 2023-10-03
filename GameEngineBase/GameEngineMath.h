@@ -247,6 +247,16 @@ public:
 		return ReturnValue;
 	}
 
+
+	float4 operator%(const float4 _Value) const
+	{
+		float4 ReturnValue = DirectX::XMVectorMod(DirectXVector, _Value.DirectXVector);
+		ReturnValue.W = W;
+
+		return ReturnValue;
+	}
+	
+
 	float4& operator/=(const float4 _Value)
 	{
 		float PrevW = W;

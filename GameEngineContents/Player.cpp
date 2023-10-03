@@ -38,7 +38,9 @@ void Player::Start()
 
 	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
-		Col->Transform.SetLocalScale({ 250.0f, 300.0f, 1.0f });
+
+		Col->Transform.SetLocalPosition({ 0.0f, -50.0f, 1.0f });
+		Col->Transform.SetLocalScale({ 100.0f, 100.0f, 1.0f });
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -51,7 +53,7 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
-	GameEngineDebug::DrawBox2D(MainSpriteRenderer->Transform);
+	GameEngineDebug::DrawBox2D(MainSpriteRenderer->GetImageTransform(), float4::BLUE);
 
 	EventParameter Event;
 
