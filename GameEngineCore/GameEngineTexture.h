@@ -33,10 +33,19 @@ public:
 	GameEngineTexture& operator=(const GameEngineTexture& _Other) = delete;
 	GameEngineTexture& operator=(GameEngineTexture&& _Other) noexcept = delete;
 
+	// 스왑체인에서 얻어온 백버퍼를 우리 리소스로 등록시켜서 사용할때 썼음
 	static std::shared_ptr<GameEngineTexture> Create(ID3D11Texture2D* _Res)
 	{
 		std::shared_ptr<GameEngineTexture> NewRes = CreateRes();
-		NewRes->Texture2D = _Res;
+		NewRes->ResCreate(_Res);
+		return NewRes;
+	}
+
+	// 내가 아무것도 없는 특정 포맷의 텍스처를 직접 만들고 싶을때.
+	static std::shared_ptr<GameEngineTexture> Create(const D3D11_TEXTURE2D_DESC& _Desc)
+	{
+		std::shared_ptr<GameEngineTexture> NewRes = CreateRes();
+		NewRes->ResCreate(_Desc);
 		return NewRes;
 	}
 
@@ -69,7 +78,6 @@ public:
 		return DSV;
 	}
 
-	void CreateRenderTargetView();
 
 	inline float4 GetScale()
 	{
@@ -95,6 +103,13 @@ public:
 	{
 		return Sampler;
 	}
+
+	// 랜더타겟 세팅용
+	void CreateRenderTargetView();
+	// 쉐이더 세팅용
+	void CreateShaderResourceView();
+	// 깊버거 세팅용
+	void CreateDepthStencilView();
 
 protected:
 

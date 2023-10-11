@@ -16,7 +16,7 @@ void Player::Start()
 {
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
-		MainSpriteRenderer->SetMaterial("2DTextureOver");
+		// MainSpriteRenderer->SetMaterial("2DTextureOver");
 		MainSpriteRenderer->SetSprite("BOCCHI.jpg");
 		MainSpriteRenderer->SetImageScale({250.0f, 300.0f, 1.0f});
 
@@ -45,7 +45,7 @@ void Player::Start()
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
-	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
+	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, 0.0f });
 }
 
 void Player::TestEvent(GameEngineRenderer* _Renderer)
@@ -54,6 +54,7 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
+	float Speed = 100.0f;
 
 	EventParameter Para;
 
@@ -76,50 +77,17 @@ void Player::Update(float _Delta)
 
 	Col->CollisionEvent(ContentsCollisionType::Monster, Para);
 
-	//if (xxxx 상황이 되면)
-	//{
-	//	MainSpriteRenderer->Death();
-	//	MainSpriteRenderer = nullptr;
-	//}
-
-	// 충돌했냐 안했냐만 보면
-
-	//std::list<std::shared_ptr<Monster>> MonsterList =
-	//	GetLevel()->GetObjectGroupConvert<Monster>(ContentsObjectType::Monster);
-
-	//for (std::shared_ptr<Monster> MonsterPtr : MonsterList)
-	//{
-	//	// 랜더러로 하는 이유 => 액터로도 할수있는데
-	//	// 보통 액터는 위치와 기준을 잡아주는 용도로 사용됩니다.
-	//	// MainSpriteRenderer->Transform.Collision(MonsterPtr->Renderer->Transform);
-
-	//	GameEngineTransform& Left = MainSpriteRenderer->Transform;
-	//	GameEngineTransform& Right = MonsterPtr->Renderer->Transform;
-
-	//	if (GameEngineTransform::Collision({ Left , Right, ColType::OBBBOX2D }))
-	//	{
-	//		MonsterPtr->Death();
-	//		// 충돌했다.
-	//	}
-	//}
-
-	float Speed = 100.0f;
-
-	if (GameEngineInput::IsDown('M'))
-	{
-		MainSpriteRenderer->AnimationPauseSwitch();
-	}
 
 	if (GameEngineInput::IsPress('A'))
 	{
 		MainSpriteRenderer->LeftFlip();
-		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
+		Transform.AddLocalPosition(float4::FORWARD * _Delta * Speed);
 	}
 
 	if (GameEngineInput::IsPress('D'))
 	{
 		MainSpriteRenderer->RightFlip();
-		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+		Transform.AddLocalPosition(float4::BACKWARD * _Delta * Speed);
 	}
 
 	if (GameEngineInput::IsPress('W'))

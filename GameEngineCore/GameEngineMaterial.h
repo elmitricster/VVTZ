@@ -29,7 +29,7 @@ public:
 	void Rasterizer();
 	void PixelShader();
 	void Blend();
-
+	void DepthStencil();
 
 	void SetVertexShader(const std::string_view& _Value);
 	void SetRasterizer(const std::string_view& _Value);
@@ -55,6 +55,6 @@ private:
 	std::shared_ptr<class GameEngineRasterizer> RasterizerPtr;
 	std::shared_ptr<class GameEnginePixelShader> PixelShaderPtr;
 	std::shared_ptr<class GameEngineBlend> BlendStatePtr;
-	// std::shared_ptr<class GameEngineDepthState> DepthStatePtr;
+	std::shared_ptr<class GameEngineDepthStencil> DepthStencilPtr;
 };
 
