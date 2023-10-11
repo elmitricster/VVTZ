@@ -67,8 +67,13 @@ void PlayLevel::Start()
 	}
 
 	{
-		std::shared_ptr<MainUIActor> Object = CreateActor<MainUIActor>(ContentsObjectType::UI);
+		std::shared_ptr<PlayMap> Object = CreateActor<PlayMap>(ContentsObjectType::BackGround);
+		Map = Object;
 	}
+
+	//{
+	//	std::shared_ptr<MainUIActor> Object = CreateActor<MainUIActor>(ContentsObjectType::UI);
+	//}
 
 	//{
 	//	GameEngineRandom NewRanadom;
@@ -79,29 +84,24 @@ void PlayLevel::Start()
 	//	}
 	//}
 
-	{
-		std::shared_ptr<PlayMap> Object = CreateActor<PlayMap>(ContentsObjectType::BackGround);
-		Map = Object;
-	}
+	//{
+	//	std::shared_ptr<TileMap> Object = CreateActor<TileMap>(ContentsObjectType::BackGround);
 
-	{
-		std::shared_ptr<TileMap> Object = CreateActor<TileMap>(ContentsObjectType::BackGround);
+	//	size_t TileX = 100;
+	//	size_t TileY = 100;
 
-		size_t TileX = 100;
-		size_t TileY = 100;
+	//	Object->TileRenderer->CreateTileMap({ TileX, TileY, {64, 64}, "kokomi2.png" });
 
-		Object->TileRenderer->CreateTileMap({ TileX, TileY, {64, 64}, "kokomi2.png" });
+	//	for (size_t y = 0; y < TileY; y++)
+	//	{
+	//		for (size_t x = 0; x < TileX; x++)
+	//		{
+	//			Object->TileRenderer->SetTileIndex({ y, x });
+	//		}
+	//	}
 
-		for (size_t y = 0; y < TileY; y++)
-		{
-			for (size_t x = 0; x < TileX; x++)
-			{
-				Object->TileRenderer->SetTileIndex({ y, x });
-			}
-		}
-
-		TileMapObject = Object;
-	}
+	//	TileMapObject = Object;
+	//}
 }
 
 void PlayLevel::Update(float _Delta)

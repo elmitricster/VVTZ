@@ -16,6 +16,7 @@ void Player::Start()
 {
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
+		MainSpriteRenderer->SetMaterial("2DTextureOver");
 		MainSpriteRenderer->SetSprite("BOCCHI.jpg");
 		MainSpriteRenderer->SetImageScale({250.0f, 300.0f, 1.0f});
 
@@ -38,8 +39,8 @@ void Player::Start()
 
 	{
 		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
-
-		Col->Transform.SetLocalPosition({ 0.0f, -50.0f, 1.0f });
+		Col->SetCollisionType(ColType::SPHERE2D);
+		Col->Transform.SetLocalPosition({ 0.0f, -50.0f, 0.0f });
 		Col->Transform.SetLocalScale({ 100.0f, 100.0f, 1.0f });
 	}
 
@@ -53,27 +54,27 @@ void Player::TestEvent(GameEngineRenderer* _Renderer)
 
 void Player::Update(float _Delta)
 {
-	GameEngineDebug::DrawBox2D(MainSpriteRenderer->GetImageTransform(), float4::BLUE);
 
-	EventParameter Event;
+	EventParameter Para;
 
-	Event.Enter = [](GameEngineCollision* _this, GameEngineCollision* Col)
+	Para.Enter = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 		{
-			Col->GetActor()->Death();
+			_Other->GetActor()->Death();
 			int a = 0;
 		};
 
-	Event.Stay = [](GameEngineCollision* _this, GameEngineCollision* Col)
+	Para.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			_Other->Off();
+			int a = 0;
+		};
+
+	Para.Exit = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 		{
 			int a = 0;
 		};
 
-	Event.Exit = [](GameEngineCollision* _this, GameEngineCollision* Col)
-		{
-			int a = 0;
-		};
-
-	Col->CollisionEvent(ContentsCollisionType::Monster, Event);
+	Col->CollisionEvent(ContentsCollisionType::Monster, Para);
 
 	//if (xxxx 상황이 되면)
 	//{

@@ -64,6 +64,11 @@ public:
 		return RTV;
 	}
 
+	inline ID3D11DepthStencilView* GetDSV()
+	{
+		return DSV;
+	}
+
 	void CreateRenderTargetView();
 
 	inline float4 GetScale()
@@ -100,6 +105,7 @@ private:
 
 	ID3D11RenderTargetView* RTV = nullptr; // 이 텍스처를 수정대상으로 삼거나 수정할수 있는 권한.
 	ID3D11ShaderResourceView* SRV = nullptr; // 쉐이더에 세팅해줄수 있는 권한다.
+	ID3D11DepthStencilView* DSV = nullptr; // 쉐이더에 세팅해줄수 있는 권한다.
 
 	DirectX::TexMetadata Data;
 	DirectX::ScratchImage Image;
@@ -107,5 +113,7 @@ private:
 	std::shared_ptr<GameEngineSampler> Sampler;
 
 	void ResLoad(std::string_view _Path);
+	void ResCreate(const D3D11_TEXTURE2D_DESC& Desc);
+	void ResCreate(ID3D11Texture2D* _Res);
 };
 
