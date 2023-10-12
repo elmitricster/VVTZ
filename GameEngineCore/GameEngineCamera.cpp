@@ -27,7 +27,12 @@ void GameEngineCamera::Start()
 		return;
 	}
 
-	// Level->Cameras[CameraOrder] = GetDynamic_Cast_This<GameEngineCamera>();
+	IsFreeCamera = false;
+
+	if (Level->GetMainCamera().get() == this)
+	{
+		GameEngineInput::AddInputObject(this);
+	}
 }
 
 void GameEngineCamera::Update(float _Delta)
@@ -55,6 +60,17 @@ void GameEngineCamera::Update(float _Delta)
 	default:
 		break;
 	}
+
+	//if (GameEngineInput::IsDown(VK_F9, this))
+	//{
+	//	IsFreeCamera = true;
+	//	GameEngineInput::IsOnlyInputObject(this);
+	//}
+
+	//if (false == IsFreeCamera)
+	//{
+	//	return;
+	//}
 }
 
 void GameEngineCamera::SetCameraOrder(int _Order)

@@ -58,7 +58,7 @@ void PlayLevel::Start()
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 
-	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
+	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	{
@@ -111,12 +111,12 @@ void PlayLevel::Update(float _Delta)
 	FPS += "\n";
 	OutputDebugStringA(FPS.c_str());*/
 
-	if (GameEngineInput::IsDown('P'))
+	if (GameEngineInput::IsDown('P', this))
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 
-	if (GameEngineInput::IsDown('N'))
+	if (GameEngineInput::IsDown('N', this))
 	{
 		GameEngineCore::ChangeLevel("EndingLevel");
 	}

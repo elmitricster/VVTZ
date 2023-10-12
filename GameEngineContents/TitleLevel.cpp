@@ -38,12 +38,12 @@ void TitleLevel::Start()
 
 void TitleLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsDown('P'))
+	if (GameEngineInput::IsDown('P', this))
 	{
 		GameEngineCore::ChangeLevel("LogoLevel");
 	}
 
-	if (GameEngineInput::IsDown('N'))
+	if (GameEngineInput::IsDown('N', this))
 	{
 		GameEngineCore::ChangeLevel("PlayLevel");
 	}

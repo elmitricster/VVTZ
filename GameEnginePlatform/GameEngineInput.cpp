@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 
 std::map<int, GameEngineInput::GameEngineKey> GameEngineInput::AllKeys;
+std::map<void*, bool> GameEngineInput::InputObject;
 
 GameEngineInput::GameEngineInput()
 {
@@ -212,8 +213,18 @@ void GameEngineInput::Update(float _DeltaTime)
 
 }
 
-bool GameEngineInput::IsDown(int _Key)
+bool GameEngineInput::IsDown(int _Key, void* _Ptr)
 {
+	if (false == InputObject.contains(_Ptr))
+	{
+		return false;
+	}
+
+	if (false == InputObject[_Ptr])
+	{
+		return false;
+	}
+
 	if (AllKeys.end() == AllKeys.find(_Key))
 	{
 		MsgBoxAssert("아직 처리하지 못하는 키입니다." + std::to_string(_Key));
@@ -221,8 +232,18 @@ bool GameEngineInput::IsDown(int _Key)
 
 	return AllKeys[_Key].Down;
 }
-bool GameEngineInput::IsUp(int _Key)
+bool GameEngineInput::IsUp(int _Key, void* _Ptr)
 {
+	if (false == InputObject.contains(_Ptr))
+	{
+		return false;
+	}
+
+	if (false == InputObject[_Ptr])
+	{
+		return false;
+	}
+
 	if (AllKeys.end() == AllKeys.find(_Key))
 	{
 		MsgBoxAssert("아직 처리하지 못하는 키입니다." + std::to_string(_Key));
@@ -230,8 +251,18 @@ bool GameEngineInput::IsUp(int _Key)
 
 	return AllKeys[_Key].Up;
 }
-bool GameEngineInput::IsPress(int _Key)
+bool GameEngineInput::IsPress(int _Key, void* _Ptr)
 {
+	if (false == InputObject.contains(_Ptr))
+	{
+		return false;
+	}
+
+	if (false == InputObject[_Ptr])
+	{
+		return false;
+	}
+
 	if (AllKeys.end() == AllKeys.find(_Key))
 	{
 		MsgBoxAssert("아직 처리하지 못하는 키입니다." + std::to_string(_Key));
@@ -239,8 +270,19 @@ bool GameEngineInput::IsPress(int _Key)
 
 	return AllKeys[_Key].Press;
 }
-bool GameEngineInput::IsFree(int _Key)
+
+bool GameEngineInput::IsFree(int _Key, void* _Ptr)
 {
+	if (false == InputObject.contains(_Ptr))
+	{
+		return false;
+	}
+
+	if (false == InputObject[_Ptr])
+	{
+		return false;
+	}
+
 	if (AllKeys.end() == AllKeys.find(_Key))
 	{
 		MsgBoxAssert("아직 처리하지 못하는 키입니다." + std::to_string(_Key));
@@ -249,3 +291,21 @@ bool GameEngineInput::IsFree(int _Key)
 	return AllKeys[_Key].Free;
 }
 
+void GameEngineInput::AddInputObject(void* _Ptr)
+{
+	InputObject[_Ptr] = true;
+}
+
+void GameEngineInput::IsOnlyInputObject(void* _Ptr)
+{
+	for (std::pair<void* const, bool>& InputPair : InputObject)
+	{
+		if (_Ptr != InputPair.first)
+		{
+			InputPair.second = false;
+		}
+		else {
+			InputPair.second = true;
+		}
+	}
+}

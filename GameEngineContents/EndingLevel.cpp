@@ -16,7 +16,7 @@ void EndingLevel::Start()
 
 void EndingLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsDown('P'))
+	if (GameEngineInput::IsDown('P', this))
 	{
 		GameEngineCore::ChangeLevel("PlayLevel");
 	}

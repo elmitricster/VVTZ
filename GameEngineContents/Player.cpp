@@ -45,7 +45,9 @@ void Player::Start()
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
-	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, 0.0f });
+	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, 100.0f });
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void Player::TestEvent(GameEngineRenderer* _Renderer)
@@ -77,42 +79,43 @@ void Player::Update(float _Delta)
 
 	Col->CollisionEvent(ContentsCollisionType::Monster, Para);
 
-
-	if (GameEngineInput::IsPress('A'))
+	if (GameEngineInput::IsPress('A', this))
 	{
 		MainSpriteRenderer->LeftFlip();
-		Transform.AddLocalPosition(float4::FORWARD * _Delta * Speed);
+		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
 	}
 
-	if (GameEngineInput::IsPress('D'))
+	if (GameEngineInput::IsPress('D', this))
 	{
 		MainSpriteRenderer->RightFlip();
-		Transform.AddLocalPosition(float4::BACKWARD * _Delta * Speed);
+		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}
 
-	if (GameEngineInput::IsPress('W'))
+	if (GameEngineInput::IsPress('W', this))
 	{
 		Transform.AddLocalPosition(float4::UP * _Delta * Speed);
 	}
 
-	if (GameEngineInput::IsPress('S'))
+	if (GameEngineInput::IsPress('S', this))
 	{
 		Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
 	}
 
-	if (GameEngineInput::IsPress('Q'))
+	if (GameEngineInput::IsPress('Q', this))
 	{
 		GetLevel()->GetMainCamera()->AddZoomValue(-_Delta);
 		Transform.AddLocalRotation({ 0.0f, 0.0f, 360.0f * _Delta });
 	}
 
-	if (GameEngineInput::IsPress('E'))
+	if (GameEngineInput::IsPress('E', this))
 	{
 		GetLevel()->GetMainCamera()->AddZoomValue(+_Delta);
 		Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	}
 
-	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(Transform.GetWorldPosition());
+	float4 Pos = Transform.GetWorldPosition();
+	Pos.Z = GetLevel()->GetMainCamera()->Transform.GetWorldPosition().Z;
+	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(Pos);
 	
 	// float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
 	// OutputDebugStringA(WorldMousePos.ToString("\n").c_str());

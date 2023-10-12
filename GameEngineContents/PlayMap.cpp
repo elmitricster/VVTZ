@@ -22,6 +22,7 @@ void PlayMap::Start()
 
 		float4 HScale = Tex->GetScale().Half();
 		HScale.Y *= -1.0f;
+		HScale.Z = 500.0f;
 
 		Renderer->Transform.SetLocalPosition(HScale);
 	}

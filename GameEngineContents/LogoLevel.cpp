@@ -39,7 +39,7 @@ void LogoLevel::Start()
 
 void LogoLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsDown('N'))
+	if (GameEngineInput::IsDown('N', this))
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}

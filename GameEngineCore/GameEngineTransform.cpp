@@ -13,10 +13,10 @@ public:
 			for (size_t Right = 0; Right < static_cast<size_t>(ColType::MAX); Right++)
 			{
 				ArrColFunction[Left][Right] = [](const CollisionParameter& _Data)
-					{
-						MsgBoxAssert("아직 처리되지 않은 함수입니다.");
-						return false;
-					};
+				{
+					MsgBoxAssert("아직 처리되지 않은 함수입니다.");
+					return false;
+				};
 			}
 		}
 
