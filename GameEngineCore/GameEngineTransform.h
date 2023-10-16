@@ -334,6 +334,11 @@ public:
 		TransformUpdate();
 	}
 
+	void SetTransformData(const TransformData& Data)
+	{
+		TransData = Data;
+	}
+
 	void CalChilds();
 
 	float4x4 GetWorldViewProjectionMatrix()

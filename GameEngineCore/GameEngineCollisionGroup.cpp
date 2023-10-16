@@ -125,6 +125,7 @@ bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _C
 	if (0 != ResultCollision.size())
 	{
 		_Function(ResultCollision);
+		return true;
 	}
 
 	return false;
@@ -167,6 +168,7 @@ bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _C
 	if (0 != ResultCollision.size())
 	{
 		_Function(ResultCollision);
+		return true;
 	}
 
 	return false;
@@ -236,6 +238,8 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 				}
 			}
 		}
+
+		return true;
 	}
 
 	return false;

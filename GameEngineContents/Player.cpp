@@ -48,6 +48,8 @@ void Player::Start()
 	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, 100.0f });
 
 	GameEngineInput::AddInputObject(this);
+
+	GetLevel()->GetMainCamera()->CameraTargetSetting(Transform, float4::BACKWARD * 500.0f);
 }
 
 void Player::TestEvent(GameEngineRenderer* _Renderer)
@@ -112,10 +114,6 @@ void Player::Update(float _Delta)
 		GetLevel()->GetMainCamera()->AddZoomValue(+_Delta);
 		Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	}
-
-	float4 Pos = Transform.GetWorldPosition();
-	Pos.Z = GetLevel()->GetMainCamera()->Transform.GetWorldPosition().Z;
-	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(Pos);
 	
 	// float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
 	// OutputDebugStringA(WorldMousePos.ToString("\n").c_str());
