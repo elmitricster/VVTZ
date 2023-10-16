@@ -1,5 +1,18 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineGUI.h>
+
+class TestGUIWindow : public GameEngineGUIWindow
+{
+public:
+	virtual void Start() {
+
+	}
+	virtual void OnGUI(float _DeltaTime)
+	{
+
+	}
+};
 
 // Ό³Έν :
 class PlayLevel : public GameEngineLevel
