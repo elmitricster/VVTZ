@@ -334,7 +334,7 @@ void GameEngineShaderResHelper::SetTexture(std::string_view _Name, std::shared_p
 {
 	if (false == IsTexture(_Name))
 	{
-		MsgBoxAssert("존재하지 않는 상수버퍼에 링크를 걸려고 했습니다.");
+		MsgBoxAssert(std::string(_Name) + "존재하지 않는 텍스쳐 세팅에 링크를 걸려고 했습니다.");
 		return;
 	}
 

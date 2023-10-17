@@ -16,6 +16,8 @@ void PlayMap::Start()
 {
 	{
 		Renderer = CreateComponent<GameEngineSpriteRenderer>(0);
+		//Renderer->SetMaskTexture("Mask.png");
+
 		Renderer->SetSprite("TestMap.png");
 
 		std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find("TestMap.png");

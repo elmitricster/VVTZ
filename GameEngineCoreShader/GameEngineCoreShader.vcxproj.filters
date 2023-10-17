@@ -9,18 +9,26 @@
       <Filter>Header</Filter>
     </FxCompile>
     <FxCompile Include="DebugColorShader.fx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TextureShader.fx" />
+    <FxCompile Include="TextureMaskShader.fx">
+      <Filter>2D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">
       <UniqueIdentifier>{6ab76e06-39e6-4354-bc82-e934a9e48016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D">
+      <UniqueIdentifier>{3d144a3e-1035-414a-867d-7dfee7ead5f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="47기 쉐이더 규칙.txt">
       <Filter>Header</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TextureShader.fx">
+      <Filter>2D</Filter>
+    </None>
   </ItemGroup>
 </Project>
