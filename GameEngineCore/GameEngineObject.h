@@ -51,6 +51,11 @@ public:
 		return IsDeathValue;
 	}
 
+	void SetName(std::string_view _Name)
+	{
+		Name = _Name.data();
+	}
+
 	void SetName(const std::string& _Name)
 	{
 		Name = _Name;
@@ -63,6 +68,7 @@ public:
 
 protected:
 	std::string Name;
+
 	int Order = 0;
 	bool IsUpdateValue = true; // 이걸 false로 만들면 됩니다.
 	bool IsDeathValue = false; // 아예 메모리에서 날려버리고 싶어.
@@ -165,11 +171,10 @@ public:
 	template<typename EnumType>
 	std::list<std::shared_ptr<GameEngineObject>> GetObjectGroup(EnumType _GroupIndex)
 	{
-		return GetObjectGroup(static_cast<int>(_GroupIndex));
+		return GetObjectGroupInt(static_cast<int>(_GroupIndex));
 	}
 
-	template<typename ObjectType>
-	std::list<std::shared_ptr<GameEngineObject>> GetObjectGroup(int _GroupIndex)
+	std::list<std::shared_ptr<GameEngineObject>> GetObjectGroupInt(int _GroupIndex)
 	{
 		std::list<std::shared_ptr<class GameEngineObject>>& Group = Childs[_GroupIndex];
 		return Group;
