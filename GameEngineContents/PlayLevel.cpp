@@ -58,7 +58,7 @@ void TestGUIWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	//		CNames.push_back(Names[i].c_str());
 	//	}
 
-	//	if (ImGui::ListBox("ObjectList", &Select, &CNames[0], Names.size()))
+	//  if (ImGui::ListBox("ObjectList", &Select, &CNames[0], static_cast<int>(Names.size())))
 	//	{
 	//		SelectObject = Objects[Select];
 	//	}
