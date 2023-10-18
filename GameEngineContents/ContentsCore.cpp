@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "ContentsCore.h"
+#include "ContentsControlWindow.h"
 
 #include <GameEngineCore/GameEngineSampler.h>
 #include <GameEngineCore/GameEngineBlend.h>
@@ -48,6 +49,8 @@ void ContentsCore::UserRes()
 void ContentsCore::Start()
 {
 	UserRes();
+
+	GameEngineGUI::CreateGUIWindow<ContentsControlWindow>("ContentsControlWindow");
 
 	GameEngineCore::CreateLevel<LogoLevel>("LogoLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
