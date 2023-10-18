@@ -26,23 +26,15 @@ void LogoLevel::Start()
 			GameEngineFile& File = Files[i];
 			GameEngineTexture::Load(File.GetStringPath());
 		}
-
-		GameEngineSprite::CreateSingle("Title02.png");
-		GameEngineSprite::CreateSingle("Moon.png");
 	}
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
-
-	std::shared_ptr<BackGround> Bg = CreateActor<BackGround>(ContentsObjectType::BackGround);
 }
 
 void LogoLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsDown('N', this))
-	{
-		GameEngineCore::ChangeLevel("TitleLevel");
-	}
+
 }
 
 

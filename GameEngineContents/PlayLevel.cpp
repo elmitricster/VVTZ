@@ -33,7 +33,6 @@ void PlayLevel::Start()
 			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateCut("KOKOMI.png", 8, 4);
 		GameEngineSprite::CreateSingle("KOKOMI2.png");
 		GameEngineSprite::CreateSingle("BOCCHI.jpg");
 		GameEngineSprite::CreateSingle("TestMap.png");
@@ -106,12 +105,7 @@ void PlayLevel::Start()
 
 void PlayLevel::Update(float _Delta)
 {
-	/*std::string FPS;
-	FPS = std::to_string(static_cast<int>(1.0f / _Delta));
-	FPS += "\n";
-	OutputDebugStringA(FPS.c_str());*/
 
-	
 }
 
 void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)

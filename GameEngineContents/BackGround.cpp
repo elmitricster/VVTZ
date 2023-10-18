@@ -15,10 +15,9 @@ BackGround::~BackGround()
 void BackGround::Start()
 {
 	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	MainSpriteRenderer->SetSprite("Title02.png");
-
-	MainSpriteRenderer2 = CreateComponent<GameEngineSpriteRenderer>();
-	MainSpriteRenderer2->SetSprite("Moon.png");
+	MainSpriteRenderer->SetSprite("Title_BG.png");
+	MainSpriteRenderer->AutoSpriteSizeOn();
+	MainSpriteRenderer->SetAutoScaleRatio(0.625f);
 }
 
 void BackGround::Update(float _Delta)

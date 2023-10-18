@@ -172,6 +172,7 @@
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="EndingLevel.h" />
+    <ClInclude Include="Logo.h" />
     <ClInclude Include="LogoLevel.h" />
     <ClInclude Include="MainUIActor.h" />
     <ClInclude Include="Monster.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="ContentsControlWindow.cpp" />
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
+    <ClCompile Include="Logo.cpp" />
     <ClCompile Include="LogoLevel.cpp" />
     <ClCompile Include="MainUIActor.cpp" />
     <ClCompile Include="Monster.cpp" />
