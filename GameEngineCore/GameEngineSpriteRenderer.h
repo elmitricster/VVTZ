@@ -120,12 +120,12 @@ public:
 
 	void RightFlip()
 	{
-		SpriteRendererInfoValue.FlipLeft = 0;
+		SpriteRendererInfoValue.FlipLeft = 1;
 	}
 
 	void LeftFlip()
 	{
-		SpriteRendererInfoValue.FlipLeft = 1;
+		SpriteRendererInfoValue.FlipLeft = 0;
 	}
 
 	void UpFlip()
