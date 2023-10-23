@@ -17,6 +17,10 @@ void Player::Start()
 	{
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(0);
 		// MainSpriteRenderer->SetMaterial("2DTextureOver");
+
+		// MainSpriteRenderer->SetMaskTexture("Mask.png", MaskMode::DynamicMask);
+		// MainSpriteRenderer->RenderBaseInfoValue.MaskPivot = { 0, -30 };
+
 		MainSpriteRenderer->CreateAnimation("Idle", "001.Idle", 0.1f, -1, -1, true);
 		MainSpriteRenderer->CreateAnimation("Dash", "002.Dash", 0.1f, -1, -1, true);
 		MainSpriteRenderer->CreateAnimation("Airborne", "003.Airborne", 0.1f, -1, -1, false);
@@ -46,7 +50,7 @@ void Player::Start()
 
 	GameEngineInput::AddInputObject(this);
 
-	GetLevel()->GetMainCamera()->CameraTargetSetting(Transform, float4::BACKWARD * 500.0f);
+	// GetLevel()->GetMainCamera()->CameraTargetSetting(Transform, float4::BACKWARD * 500.0f);
 
 	{
 		CreateStateParameter NewPara;
@@ -201,6 +205,10 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
+	float4 ScreenPos = MainSpriteRenderer->GetScreenPosition();
+
+	OutputDebugStringA(ScreenPos.ToString().c_str());
+
 	PlayerState.Update(_Delta);
 
 	//float Speed = 100.0f;

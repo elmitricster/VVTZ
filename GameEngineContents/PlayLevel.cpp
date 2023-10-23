@@ -37,6 +37,7 @@ void PlayLevel::Start()
 		GameEngineSprite::CreateSingle("BOCCHI.jpg");
 		GameEngineSprite::CreateSingle("TestMap.png");
 		GameEngineSprite::CreateSingle("TileEx.png");
+		GameEngineSprite::CreateSingle("EditorTest.png");
 	}
 
 	{

@@ -98,6 +98,16 @@ float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
     
     int2 ScreenPos = int2(_Input.POSITION.x, _Input.POSITION.y);
     
+    // ScreenPos
+
+    // 1280 720 MaskScreenScale;
+    // Half 기준은 MaskScreenScale / 2
+    // 256 256 RenderScreenScale;
+    
+    // BaseScreenPos // 액터의 위치.
+    
+    // ScreenPos -= BaseScreenPos;
+    
     if (MaskMode == 1)
     {
         ScreenPos.x = RendererScreenPos.x - ScreenPos.x;
