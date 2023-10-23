@@ -64,6 +64,9 @@
     <ClInclude Include="Logo.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="MapEditorLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="Logo.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditorLevel.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

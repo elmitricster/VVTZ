@@ -15,7 +15,7 @@ Player::~Player()
 void Player::Start()
 {
 	{
-		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(30);
+		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(0);
 		// MainSpriteRenderer->SetMaterial("2DTextureOver");
 		MainSpriteRenderer->CreateAnimation("Idle", "001.Idle", 0.1f, -1, -1, true);
 		MainSpriteRenderer->CreateAnimation("Dash", "002.Dash", 0.1f, -1, -1, true);
@@ -34,12 +34,12 @@ void Player::Start()
 		MainSpriteRenderer->AutoSpriteSizeOn();
 	}
 
-	{
-		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
-		Col->SetCollisionType(ColType::SPHERE2D);
-		Col->Transform.SetLocalPosition({ 0.0f, 0.0f, 0.0f });
-		Col->Transform.SetLocalScale({60.0f, 130.0f, 0.0f}); // 여기
-	}
+	//{
+	//	Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
+	//	Col->SetCollisionType(ColType::AABBBOX2D);
+	//	Col->Transform.SetLocalPosition({ 0.0f, 0.0f, 0.0f });
+	//	Col->Transform.SetLocalScale({60.0f, 130.0f, 0.0f}); // 여기
+	//}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, 100.0f });
@@ -76,12 +76,12 @@ void Player::Start()
 					_Parent->ChangeState(PlayerState::Walk);
 				}
 
-				if (GameEngineInput::IsPress('C', this))
+				if (GameEngineInput::IsDown('C', this))
 				{
 					_Parent->ChangeState(PlayerState::Airborne);
 				}
 
-				if (GameEngineInput::IsPress('X', this))
+				if (GameEngineInput::IsDown('X', this))
 				{
 					_Parent->ChangeState(PlayerState::Slash);
 				}
@@ -173,18 +173,30 @@ void Player::Start()
 				if (GameEngineInput::IsPress('A', this))
 				{
 					MainSpriteRenderer->LeftFlip();
-					_Parent->ChangeState(PlayerState::Walk);
+					Transform.AddLocalPosition(float4::LEFT * _DeltaTime* MoveSpeed);
 				}
 
 				if (GameEngineInput::IsPress('D', this))
 				{
 					MainSpriteRenderer->RightFlip();
-					_Parent->ChangeState(PlayerState::Walk);
+					Transform.AddLocalPosition(float4::RIGHT * _DeltaTime* MoveSpeed);
+				}
+
+				if (GameEngineInput::IsPress('C', this))
+				{
+					Transform.AddLocalPosition(float4::UP * _DeltaTime * 1000);
+				}
+
+				if (GameEngineInput::IsFree('C', this))
+				{
+					
 				}
 			};
 
 		PlayerState.CreateState(PlayerState::Airborne, NewPara);
 	}
+
+	PlayerState.ChangeState(PlayerState::Idle);
 }
 
 void Player::Update(float _Delta)
@@ -250,7 +262,7 @@ void Player::Update(float _Delta)
 
 	if (GameEngineColor::RED != Color)
 	{
-		GravityForce.Y -= _Delta * 200.0f;
+		GravityForce.Y -= _Delta * 500.0f;
 		Transform.AddLocalPosition(GravityForce * _Delta);
 	}
 	else

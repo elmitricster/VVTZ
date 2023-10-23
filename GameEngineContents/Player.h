@@ -44,6 +44,6 @@ private:
 	std::shared_ptr<GameEngineCollision> Col;
 
 	GameEngineState PlayerState;
-	float MoveSpeed = 200.0f;
+	float MoveSpeed = 300.0f;
 };
 

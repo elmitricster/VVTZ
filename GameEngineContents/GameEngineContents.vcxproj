@@ -175,6 +175,7 @@
     <ClInclude Include="Logo.h" />
     <ClInclude Include="LogoLevel.h" />
     <ClInclude Include="MainUIActor.h" />
+    <ClInclude Include="MapEditorLevel.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="LogoLevel.cpp" />
     <ClCompile Include="MainUIActor.cpp" />
+    <ClCompile Include="MapEditorLevel.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayLevel.cpp" />

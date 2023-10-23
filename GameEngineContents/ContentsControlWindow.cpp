@@ -1,5 +1,100 @@
 #include "PreCompile.h"
 #include "ContentsControlWindow.h"
+#include "MapEditorLevel.h"
+
+void MapEditorTab::Start()
+{
+	GameEngineCore::ChangeLevel("MapEditor");
+}
+
+void MapEditorTab::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
+{
+	if (_Level->GetName() != "MapEditor")
+	{
+		return;
+	}
+
+	if (ImGui::Button("Save"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources");
+		Dir.MoveChild("Data");
+
+
+		OPENFILENAMEA OFN;
+		char filePathName[100] = "";
+		char lpstrFile[100] = "";
+		static char filter[] = "모든 파일\0*.*\0텍스트 파일\0*.txt\0fbx 파일\0*.fbx";
+
+		std::string Path = Dir.GetStringPath();
+
+		memset(&OFN, 0, sizeof(OPENFILENAME));
+		OFN.lStructSize = sizeof(OPENFILENAME);
+		OFN.hwndOwner = GameEngineCore::MainWindow.GetHWND();
+		OFN.lpstrFilter = filter;
+		OFN.lpstrFile = lpstrFile;
+		OFN.nMaxFile = 100;
+		OFN.lpstrDefExt = "GameData";
+		OFN.lpstrInitialDir = Path.c_str();
+
+		if (GetSaveFileNameA(&OFN) != 0) {
+			SavePath = OFN.lpstrFile;
+		}
+	}
+
+	InputPath.resize(256);
+
+	std::string Labal = "저장경로";
+	Labal = GameEngineString::AnsiToUTF8(Labal);
+	ImGui::InputText(Labal.c_str(), &InputPath[0], InputPath.size());
+
+	if (ImGui::Button("Def Save"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources");
+		Dir.MoveChild("Data");
+
+		std::string PathName = Dir.GetFileName();
+
+		SavePath = PathName + InputPath + ".GameData";
+	}
+
+	if ("" != SavePath)
+	{
+		// File을 가지고 저장
+		SavePath = "";
+	}
+
+	MapEditorLevel* MapLevel = dynamic_cast<MapEditorLevel*>(_Level);
+
+	if (nullptr == MapLevel)
+	{
+		return;
+	}
+
+	// MapLevel->BackGroundRenderer->SetSprite
+
+	Labal = "BackName";
+	Labal = GameEngineString::AnsiToUTF8(Labal);
+	ImGui::InputText(Labal.c_str(), BackGroundName, 256);
+
+	if (ImGui::Button("Setting"))
+	{
+
+		std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(BackGroundName);
+
+		float4 HScale = Tex->GetScale().Half();
+		HScale.Y *= -1.0f;
+
+		MapLevel->BackGroundRenderer->SetSprite(BackGroundName);
+		MapLevel->BackGroundRenderer->Transform.SetLocalPosition(HScale);
+	}
+
+	// 일반적으로 그냥 클래스를 저장할수는 없다.
+	// 포인터는 저장의 의미가 없다.
+}
 
 void TestTab::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 {
@@ -19,47 +114,49 @@ void TestTab::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
 	}
 
-	//std::list<std::shared_ptr<GameEngineObject>> ObjectLists = _Level->GetObjectGroupInt(0);
+	std::list<std::shared_ptr<GameEngineObject>> ObjectLists = _Level->GetObjectGroupInt(0);
 
-	//std::vector<std::shared_ptr<GameEngineObject>> Objects;
+	std::vector<std::shared_ptr<GameEngineObject>> Objects;
 
-	//for (std::shared_ptr<GameEngineObject> Ptr : ObjectLists)
-	//{
-	//	Objects.push_back(Ptr);
-	//}
+	for (std::shared_ptr<GameEngineObject> Ptr : ObjectLists)
+	{
+		Objects.push_back(Ptr);
+	}
 
-	//if (Objects.size())
-	//{
-	//	std::vector<std::string> Names;
+	if (Objects.size())
+	{
+		std::vector<std::string> Names;
 
-	//	for (std::shared_ptr<GameEngineObject> Ptr : Objects)
-	//	{
-	//		Names.push_back(Ptr->GetName());
-	//	}
+		for (std::shared_ptr<GameEngineObject> Ptr : Objects)
+		{
+			Names.push_back(Ptr->GetName());
+		}
 
-	//	//Names.push_back("aaaa");
-	//	//Names.push_back("bbbb");
+		//Names.push_back("aaaa");
+		//Names.push_back("bbbb");
 
-	//	std::vector<const char*> CNames;
+		std::vector<const char*> CNames;
 
-	//	for (size_t i = 0; i < Names.size(); i++)
-	//	{
-	//		CNames.push_back(Names[i].c_str());
-	//	}
+		for (size_t i = 0; i < Names.size(); i++)
+		{
+			CNames.push_back(Names[i].c_str());
+		}
 
-	//	if (ImGui::ListBox("ObjectList", &Select, &CNames[0], static_cast<int>(Names.size())))
-	//	{
-	//		SelectObject = Objects[Select];
-	//	}
+		ImGui::Text("\n");
 
-	//	if (nullptr != SelectObject)
-	//	{
-	//		if (ImGui::Button("Select Object Off"))
-	//		{
-	//			SelectObject->Off();
-	//		}
-	//	}
-	//}
+		if (ImGui::ListBox("ObjectList", &Select, &CNames[0], static_cast<int>(Names.size())))
+		{
+			SelectObject = Objects[Select];
+		}
+
+		if (nullptr != SelectObject)
+		{
+			if (ImGui::Button("Select Object Off"))
+			{
+				SelectObject->Off();
+			}
+		}
+	}
 }
 
 

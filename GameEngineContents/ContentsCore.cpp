@@ -1,6 +1,5 @@
 #include "PreCompile.h"
 #include "ContentsCore.h"
-#include "ContentsControlWindow.h"
 
 #include <GameEngineCore/GameEngineSampler.h>
 #include <GameEngineCore/GameEngineBlend.h>
@@ -10,6 +9,8 @@
 #include "TitleLevel.h"
 #include "PlayLevel.h"
 #include "EndingLevel.h"
+#include "MapEditorLevel.h"
+#include "ContentsControlWindow.h"
 
 ContentsCore::ContentsCore()
 {
@@ -56,6 +57,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
 	GameEngineCore::CreateLevel<EndingLevel>("EndingLevel");
+	GameEngineCore::CreateLevel<MapEditorLevel>("MapEditor");
 
 	GameEngineCore::ChangeLevel("PlayLevel");
 
