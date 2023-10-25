@@ -70,6 +70,9 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{7ec56bf6-95d9-46ed-a74b-95072ce4fd9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Font">
+      <UniqueIdentifier>{6edca7d2-a0bb-42b1-87a9-45b5d26324bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineCore.h" />
@@ -223,6 +226,12 @@
     <ClInclude Include="GameEngineState.h">
       <Filter>Contents</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\inc\FW1FontWrapper.h">
+      <Filter>ThirdParty\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineFont.h">
+      <Filter>Resources\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -367,10 +376,19 @@
     <ClCompile Include="GameEngineState.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineFont.cpp">
+      <Filter>Resources\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectXTex\inc\DirectXTex.inl">
       <Filter>ThirdParty\Inc</Filter>
+    </None>
+    <None Include="ThirdParty\FW1FontWrapper\lib\Debug\FW1FontWrapper.dll">
+      <Filter>ThirdParty\Debug</Filter>
+    </None>
+    <None Include="ThirdParty\FW1FontWrapper\lib\Release\FW1FontWrapper.dll">
+      <Filter>ThirdParty\Release</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +403,12 @@
     </Library>
     <Library Include="ThirdParty\DirectXTex\lib\Debug\DirectXTex.pdb">
       <Filter>ThirdParty\Debug</Filter>
+    </Library>
+    <Library Include="ThirdParty\FW1FontWrapper\lib\Debug\FW1FontWrapper.lib">
+      <Filter>ThirdParty\Debug</Filter>
+    </Library>
+    <Library Include="ThirdParty\FW1FontWrapper\lib\Release\FW1FontWrapper.lib">
+      <Filter>ThirdParty\Release</Filter>
     </Library>
   </ItemGroup>
 </Project>
