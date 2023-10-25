@@ -60,8 +60,11 @@ void GameEnginePath::MoveParentToExistsChild(std::string_view _ChildPath)
 			MsgBoxAssert("루트 경로까지 샅샅히 뒤졌지만" + std::string(_ChildPath) + "파일이나 폴더를 하위로 가지고 있는 경로를 찾지 못했습니다");
 		}
 	}
+}
 
-
+bool GameEnginePath::IsExits()
+{
+	return std::filesystem::exists(Path);
 }
 
 void GameEnginePath::MoveChild(std::string_view _ChildPath)

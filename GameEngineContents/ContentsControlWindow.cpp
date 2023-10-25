@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "ContentsControlWindow.h"
 #include "MapEditorLevel.h"
+#include "Monster.h"
 
 void MapEditorTab::Start()
 {
@@ -15,6 +16,96 @@ void MapEditorTab::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	}
 
 	if (ImGui::Button("Save"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources");
+		Dir.MoveChild("Data");
+
+		OPENFILENAMEA OFN;
+		char filePathName[100] = "";
+		char lpstrFile[100] = "";
+		static char filter[] = "모든 파일\0*.*\0텍스트 파일\0*.txt\0fbx 파일\0*.fbx";
+
+		std::string Path = Dir.GetStringPath();
+
+		memset(&OFN, 0, sizeof(OPENFILENAME));
+		OFN.lStructSize = sizeof(OPENFILENAME);
+		OFN.hwndOwner = GameEngineCore::MainWindow.GetHWND();
+		OFN.lpstrFilter = filter;
+		OFN.lpstrFile = lpstrFile;
+		OFN.nMaxFile = 100;
+		OFN.lpstrDefExt = "GameData";
+		OFN.lpstrInitialDir = Path.c_str();
+
+		if (GetSaveFileNameA(&OFN) != 0) {
+			SavePath = OFN.lpstrFile;
+		}
+	}
+
+	//InputPath.resize(256);
+
+	//std::string Labal = "저장경로";
+	//Labal = GameEngineString::AnsiToUTF8(Labal);
+	//ImGui::InputText(Labal.c_str(), &InputPath[0], InputPath.size());
+	
+	//GameEngineDirectory Dir;
+	//Dir.MoveParentToExistsChild("ContentsResources");
+	//Dir.MoveChild("ContentsResources");
+	//Dir.MoveChild("Data");
+
+	//std::string PathName = Dir.GetFileName();
+
+	//DefSavePath = PathName + InputPath + ".GameData";
+
+	MapEditorLevel* MapLevel = dynamic_cast<MapEditorLevel*>(_Level);
+
+	if (nullptr == MapLevel)
+	{
+		return;
+	}
+
+	// MapLevel->BackGroundRenderer->SetSprite
+
+	std::string Labal = "저장경로";
+	Labal = "BackImageName";
+	Labal = GameEngineString::AnsiToUTF8(Labal);
+	ImGui::InputText(Labal.c_str(), BackGroundName, 256);
+
+	if (ImGui::Button("Setting"))
+	{
+		std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(BackGroundName);
+
+		float4 HScale = Tex->GetScale().Half();
+		HScale.Y *= -1.0f;
+
+		MapLevel->BackGroundRenderer->SetSprite(BackGroundName);
+		MapLevel->BackGroundRenderer->Transform.SetLocalPosition(HScale);
+	}
+
+	if ("" != SavePath)
+	{
+		ImGui::Text(SavePath.c_str());
+
+		if (ImGui::Button("MapDataSave"))
+		{
+			GameEngineSerializer BinSer;
+			BinSer << MapLevel->BackGroundRenderer->GetSprite()->GetName();
+			std::vector<std::shared_ptr<Monster>> ObjectType = _Level->GetObjectGroupConvert<Monster>(ContentsObjectType::Monster);
+			BinSer << static_cast<unsigned int>(ObjectType.size());
+			for (size_t i = 0; i < ObjectType.size(); i++)
+			{
+				ObjectType[i]->Serializer(BinSer);
+			}
+
+			GameEngineFile File = SavePath;
+			File.Open(FileOpenType::Write, FileDataType::Binary);
+			File.Write(BinSer);
+
+		}
+	}
+
+	if (ImGui::Button("Load"))
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("ContentsResources");
@@ -38,58 +129,44 @@ void MapEditorTab::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 		OFN.lpstrDefExt = "GameData";
 		OFN.lpstrInitialDir = Path.c_str();
 
-		if (GetSaveFileNameA(&OFN) != 0) {
-			SavePath = OFN.lpstrFile;
+		if (GetOpenFileNameA(&OFN) != 0) {
+			LoadPath = OFN.lpstrFile;
 		}
 	}
 
-	InputPath.resize(256);
-
-	std::string Labal = "저장경로";
-	Labal = GameEngineString::AnsiToUTF8(Labal);
-	ImGui::InputText(Labal.c_str(), &InputPath[0], InputPath.size());
-
-	if (ImGui::Button("Def Save"))
+	if (LoadPath != "")
 	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("ContentsResources");
-		Dir.MoveChild("ContentsResources");
-		Dir.MoveChild("Data");
+		ImGui::Text(LoadPath.c_str());
 
-		std::string PathName = Dir.GetFileName();
+		if (ImGui::Button("MapDataLoad"))
+		{
+			GameEngineSerializer BinSer;
 
-		SavePath = PathName + InputPath + ".GameData";
-	}
+			GameEngineFile File = LoadPath;
+			File.Open(FileOpenType::Read, FileDataType::Binary);
+			File.DataAllRead(BinSer);
 
-	if ("" != SavePath)
-	{
-		// File을 가지고 저장
-		SavePath = "";
-	}
+			std::vector<std::shared_ptr<Monster>> ObjectType = _Level->GetObjectGroupConvert<Monster>(ContentsObjectType::Monster);
+			for (size_t i = 0; i < ObjectType.size(); i++)
+			{
+				// 다 죽인다.
+				ObjectType[i]->Death();
+			}
 
-	MapEditorLevel* MapLevel = dynamic_cast<MapEditorLevel*>(_Level);
+			std::string BackFileName;
+			BinSer >> BackFileName;
+			unsigned int MonsterCount = 0;
+			BinSer >> MonsterCount;
 
-	if (nullptr == MapLevel)
-	{
-		return;
-	}
+			for (size_t i = 0; i < MonsterCount; i++)
+			{
+				std::shared_ptr<Monster> Object = _Level->CreateActor<Monster>(ContentsObjectType::Monster);
+				Object->DeSerializer(BinSer);
+			}
 
-	// MapLevel->BackGroundRenderer->SetSprite
-
-	Labal = "BackName";
-	Labal = GameEngineString::AnsiToUTF8(Labal);
-	ImGui::InputText(Labal.c_str(), BackGroundName, 256);
-
-	if (ImGui::Button("Setting"))
-	{
-
-		std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(BackGroundName);
-
-		float4 HScale = Tex->GetScale().Half();
-		HScale.Y *= -1.0f;
-
-		MapLevel->BackGroundRenderer->SetSprite(BackGroundName);
-		MapLevel->BackGroundRenderer->Transform.SetLocalPosition(HScale);
+			// GameEngineSerializer BinSer;
+			// SaveBin << MapLevel->BackGroundRenderer->GetSprite()->GetName();
+		}
 	}
 
 	// 일반적으로 그냥 클래스를 저장할수는 없다.
@@ -158,7 +235,6 @@ void TestTab::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 		}
 	}
 }
-
 
 void ContentsControlWindow::Start()
 {

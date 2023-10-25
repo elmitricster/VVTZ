@@ -23,7 +23,45 @@ void Monster::Start()
 	}
 
 	{
-		std::shared_ptr<GameEngineCollision> Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Monster);
+		Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Monster);
 		Col->Transform.SetLocalScale(Scale);
+	}
+}
+
+void Monster::Serializer(GameEngineSerializer& _Data)
+{
+	{
+		const TransformData& Data = Transform.GetConstTransformDataRef();
+		_Data.Write(&Data, sizeof(Data));
+	}
+
+	{
+		const TransformData& Data = Renderer->Transform.GetConstTransformDataRef();
+		_Data.Write(&Data, sizeof(Data));
+	}
+
+	{
+		const TransformData& Data = Col->Transform.GetConstTransformDataRef();
+		_Data.Write(&Data, sizeof(Data));
+	}
+}
+
+void Monster::DeSerializer(GameEngineSerializer& _Data)
+{
+	TransformData Data;
+
+	{
+		_Data.Read(&Data, sizeof(Data));
+		Transform.SetTransformData(Data);
+	}
+
+	{
+		_Data.Read(&Data, sizeof(Data));
+		Renderer->Transform.SetTransformData(Data);
+	}
+
+	{
+		_Data.Read(&Data, sizeof(Data));
+		Col->Transform.SetTransformData(Data);
 	}
 }
