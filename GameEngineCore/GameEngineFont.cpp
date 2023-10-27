@@ -38,8 +38,6 @@ GameEngineFont::~GameEngineFont()
 	}
 }
 
-
-
 void GameEngineFont::ResLoad(const std::string_view& _Path)
 {
 	// 블랜드 추가가 필요하다.
@@ -50,4 +48,11 @@ void GameEngineFont::ResLoad(const std::string_view& _Path)
 	{
 		MsgBoxAssert("폰트 생성 실패");
 	}
+}
+
+void GameEngineFont::FontDraw(const std::string& _Text, float _FontScale, const float4& _Pos, const float4& _Color, FW1_TEXT_FLAG _Flag)
+{
+	std::wstring Text = GameEngineString::AnsiToUnicode(_Text);
+
+	Font->DrawString(GameEngineCore::GetContext(), Text.c_str(), _FontScale, _Pos.X, _Pos.Y, _Color.ColorToUint(), _Flag);
 }

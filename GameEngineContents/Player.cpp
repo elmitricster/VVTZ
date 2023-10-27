@@ -38,6 +38,11 @@ void Player::Start()
 		MainSpriteRenderer->AutoSpriteSizeOn();
 	}
 
+	{
+		std::shared_ptr<GameEngineSpriteRenderer> FontRender = CreateComponent<GameEngineSpriteRenderer>(30);
+		FontRender->SetText("µ¸¿ò", "¾È³çÇÏ¼¼¿ä", 50.0f, float4::BLUE, FW1_CENTER);
+	}
+
 	//{
 	//	Col = CreateComponent<GameEngineCollision>(ContentsCollisionType::Player);
 	//	Col->SetCollisionType(ColType::AABBBOX2D);

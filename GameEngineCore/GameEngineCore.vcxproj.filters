@@ -384,12 +384,6 @@
     <None Include="ThirdParty\DirectXTex\inc\DirectXTex.inl">
       <Filter>ThirdParty\Inc</Filter>
     </None>
-    <None Include="ThirdParty\FW1FontWrapper\lib\Debug\FW1FontWrapper.dll">
-      <Filter>ThirdParty\Debug</Filter>
-    </None>
-    <None Include="ThirdParty\FW1FontWrapper\lib\Release\FW1FontWrapper.dll">
-      <Filter>ThirdParty\Release</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="ThirdParty\DirectXTex\lib\Debug\DirectXTex.lib">
@@ -410,5 +404,13 @@
     <Library Include="ThirdParty\FW1FontWrapper\lib\Release\FW1FontWrapper.lib">
       <Filter>ThirdParty\Release</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\lib\Release\FW1FontWrapper.dll">
+      <Filter>ThirdParty\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\lib\Debug\FW1FontWrapper.dll">
+      <Filter>ThirdParty\Debug</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
