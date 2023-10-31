@@ -47,7 +47,7 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 		++CurIndex;
 		EventCheck = true;
 
-		if (CurIndex > End - Start)
+		if (CurIndex > InterIndex)
 		{
 			if (nullptr != EndEvent && false == IsEnd)
 			{
@@ -157,6 +157,18 @@ void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int in
 	SetImageScale(CurSprite.GetScale() * AutoScaleRatio);
 }
 
+void GameEngineSpriteRenderer::ChangeCurSprite(int _Index)
+{
+	CurFrameAnimations = nullptr;
+
+	if (nullptr == Sprite)
+	{
+		MsgBoxAssert("존재하지 않는 스프라이트를 사용하려고 했습니다.");
+	}
+
+	CurSprite = Sprite->GetSpriteData(_Index);
+}
+
 void GameEngineSpriteRenderer::CreateAnimation(
 	std::string_view _AnimationName,
 	std::string_view _SpriteName,
@@ -208,9 +220,29 @@ void GameEngineSpriteRenderer::CreateAnimation(
 		NewAnimation->End = Sprite->GetSpriteCount() - 1;
 	}
 
-	for (unsigned int i = NewAnimation->Start; i <= NewAnimation->End; i++)
+	int Plus = 1;
+
+	if (NewAnimation->Start > NewAnimation->End)
 	{
-		NewAnimation->Index.push_back(i);
+		for (
+			int i = NewAnimation->Start;
+			i >= NewAnimation->End;
+			i--
+			)
+		{
+			NewAnimation->Index.push_back(i);
+		}
+
+		NewAnimation->InterIndex = NewAnimation->Start - NewAnimation->End;
+	}
+	else
+	{
+		for (int i = NewAnimation->Start; i <= NewAnimation->End; i++)
+		{
+			NewAnimation->Index.push_back(i);
+		}
+
+		NewAnimation->InterIndex = NewAnimation->End - NewAnimation->Start;
 	}
 
 	NewAnimation->Inter.resize(NewAnimation->Index.size());
