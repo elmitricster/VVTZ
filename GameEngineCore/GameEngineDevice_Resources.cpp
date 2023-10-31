@@ -38,9 +38,27 @@ void GameEngineDevice::ResourcesInit()
 		}
 
 		GameEngineSprite::CreateSingle("NSet.png");
-
 	}
 
+	{
+		std::vector<GameEngineVertex> Vertex;
+		Vertex.resize(3);
+
+		Vertex[0] = { { 1.0f, 0.0f, 0.0f, 1.0f } };
+		Vertex[1] = { { 0.0f, 0.0f, 0.0f, 1.0f } };
+
+		GameEngineVertexBuffer::Create("Line", Vertex);
+
+		std::vector<unsigned int> Index =
+		{
+			0, 1
+		};
+		GameEngineIndexBuffer::Create("Line", Index);
+
+		std::shared_ptr<GameEngineMesh> LineMesh = GameEngineMesh::Create("Line");
+		LineMesh->SetTOPOLOGY(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+		// LineMesh->SetTOPOLOGY(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	}
 
 	{
 		std::vector<GameEngineVertex> Vertex;
@@ -433,9 +451,9 @@ void GameEngineDevice::ResourcesInit()
 		// D3D11_FILTER_MIN_MAG_MIP_
 		// 그 밉맵에서 색상가져올때 다 뭉개는 방식으로 가져오겠다.
 		Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
-		Desc.AddressU = D3D11_TEXTURE_ADDRESS_MIRROR;
-		Desc.AddressV = D3D11_TEXTURE_ADDRESS_MIRROR;
-		Desc.AddressW = D3D11_TEXTURE_ADDRESS_MIRROR;
+		Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+		Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+		Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 
 		Desc.MipLODBias = 0.0f;
 		Desc.MaxAnisotropy = 1;
