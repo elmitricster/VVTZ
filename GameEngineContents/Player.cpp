@@ -40,7 +40,7 @@ void Player::Start()
 
 	{
 		std::shared_ptr<GameEngineSpriteRenderer> FontRender = CreateComponent<GameEngineSpriteRenderer>(30);
-		FontRender->SetText("돋움", "안녕하세요", 50.0f, float4::BLUE, FW1_CENTER);
+		FontRender->SetText("돋움", "할로우 나이트", 50.0f, float4::BLUE, FW1_CENTER);
 	}
 
 	//{
