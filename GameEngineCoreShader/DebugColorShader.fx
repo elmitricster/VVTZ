@@ -5,10 +5,9 @@ struct GameEngineVertex2D
     float4 POSITION : POSITION;
 };
 
-
 struct PixelOutPut
 {
-    // 픽셀쉐이더에 보내느 ㄴ역
+    // 픽셀쉐이더에 보내는 역할
     float4 POSITION : SV_POSITION;
 };
 

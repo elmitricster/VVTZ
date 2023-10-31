@@ -8,7 +8,12 @@
     <FxCompile Include="RenderBase.fx">
       <Filter>Header</Filter>
     </FxCompile>
-    <FxCompile Include="DebugColorShader.fx" />
+    <FxCompile Include="DebugColorShader.fx">
+      <Filter>Debug</Filter>
+    </FxCompile>
+    <FxCompile Include="DebugLineShader.fx">
+      <Filter>Debug</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">
@@ -16,6 +21,9 @@
     </Filter>
     <Filter Include="2D">
       <UniqueIdentifier>{3d144a3e-1035-414a-867d-7dfee7ead5f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{200142fa-3e19-4135-8a86-41a9c098451b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

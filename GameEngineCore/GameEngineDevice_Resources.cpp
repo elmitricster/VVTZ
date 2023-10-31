@@ -511,6 +511,14 @@ void GameEngineDevice::ResourcesInit()
 		Mat->SetRasterizer("EngineWireRasterizer");
 	}
 
+	{
+		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("2DDebugLine");
+		Mat->SetVertexShader("DebugLine_VS");
+		Mat->SetPixelShader("DebugLine_PS");
+		// Mat->SetRasterizer("EngineWireRasterizer");
+
+		Mat->SetRasterizer("EngineRasterizer");
+	}
 
 	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
 	// 기본 매쉬

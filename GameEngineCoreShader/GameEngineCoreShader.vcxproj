@@ -134,6 +134,7 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="DebugColorShader.fx" />
+    <FxCompile Include="DebugLineShader.fx" />
     <FxCompile Include="RenderBase.fx" />
     <FxCompile Include="Transform.fx" />
   </ItemGroup>
